@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#f6f8fb;
+}
+
+.layout{
+    position:relative;
+}
+
+/* ===========================
+SIDEBAR
+=========================== */
+
+.conteudo{
+
+    margin-left:260px;
+    width:calc(100vw - 260px);
+
+    min-height:100vh;
+
+    padding:22px 28px;
+
+    background:#f6f8fb;
+
+    transition:
+        margin-left .35s ease,
+        width .35s ease;
+
+}
+
+.conteudo.menu-fechado{
+
+    margin-left:78px;
+    width:calc(100vw - 78px);
+
+}
+
+/* ===========================
+HEADER
+=========================== */
+
+.pagina-header{
+
+    margin-bottom:26px;
+
+}
+
+.pagina-header h1{
+
+    font-size:34px;
+    font-weight:800;
+    color:#111827;
+
+}
+
+.pagina-header p{
+
+    margin-top:6px;
+
+    font-size:14px;
+
+    color:#6b7280;
+
+}
+
+/* ===========================
+LISTA
+=========================== */
+
+.lista-coletas{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* ===========================
+CARD
+=========================== */
+
+.coleta-card{
+
+    background:#ffffff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:16px;
+
+    padding:16px 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+}
+
+.icone{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:12px;
+
+    background:#edf9f2;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.icone i{
+
+    color:#1f9d55;
+
+    font-size:18px;
+
+}
+
+.info h3{
+
+    font-size:20px;
+
+    color:#111827;
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+}
+
+.info span{
+
+    font-size:14px;
+
+    color:#64748b;
+
+}
+
+.status{
+
+    padding:6px 14px;
+
+    border-radius:999px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.entregue{
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    border:1px solid #bbf7d0;
+
+}

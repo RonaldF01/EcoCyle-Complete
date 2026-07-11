@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#f6f8fb;
+}
+
+.layout{
+    position:relative;
+}
+
+.conteudo{
+
+    margin-left:260px;
+    width:calc(100vw - 260px);
+
+    min-height:100vh;
+
+    padding:28px 32px;
+
+    background:#f6f8fb;
+
+    transition:
+        margin-left .35s ease,
+        width .35s ease;
+
+}
+
+.conteudo.menu-fechado{
+
+    margin-left:78px;
+    width:calc(100vw - 78px);
+
+}
+
+/* ===================== CABEÇALHO ===================== */
+
+.pagina-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:35px;
+
+}
+
+.pagina-header h1{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+.pagina-header p{
+
+    margin-top:8px;
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}
+
+.btn-certificado{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#1f9d55;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.btn-certificado:hover{
+
+    background:#188348;
+
+}
+
+/* ===================== CARD SUPERIOR ===================== */
+
+.card-explicacao{
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:30px;
+
+}
+
+.card-explicacao h2{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:25px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    margin-bottom:22px;
+
+}
+
+.card-explicacao h2 i{
+
+    color:#16a34a;
+
+}
+
+/* ===================== PASSOS ===================== */
+
+.passos{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.passo{
+
+    background:#f8fafc;
+
+    border-radius:18px;
+
+    padding:30px 22px;
+
+    text-align:center;
+
+    transition:.25s;
+
+}
+
+.passo:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.icone{
+
+    font-size:38px;
+
+    margin-bottom:18px;
+
+}
+
+.passo h3{
+
+    font-size:21px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+}
+
+.passo p{
+
+    font-size:15px;
+
+    color:#64748b;
+
+    line-height:1.6;
+
+}
+
+/* ===================== CARD VAZIO ===================== */
+
+.card-vazio{
+
+    height:270px;
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.card-vazio i{
+
+    font-size:60px;
+
+    color:#d1d5db;
+
+    margin-bottom:20px;
+
+}
+
+.card-vazio h2{
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+}
+
+.card-vazio p{
+
+    font-size:16px;
+
+    color:#64748b;
+
+}
+
+.card-vazio strong{
+
+    color:#111827;
+
+}

@@ -1,0 +1,95 @@
+<div class="cadastro-page">
+
+  <div class="logo-area">
+
+    <div class="logo">
+      ♻
+    </div>
+
+    <h1>
+      Eco<span>Cycle</span>
+    </h1>
+
+    <h2>Crie sua conta</h2>
+
+    <p>Preencha os dados para começar</p>
+
+  </div>
+
+  <div class="login-card">
+
+    <label>Tipo de organização</label>
+
+    <div class="perfil-container">
+
+  <div
+    class="perfil-card"
+    [class.selected]="perfilSelecionado === 'gerador'"
+    (click)="selecionarPerfil('gerador')">
+
+    <i class="fa-solid fa-building"></i>
+    <span>Gerador</span>
+  </div>
+
+  <div
+    class="perfil-card"
+    [class.selected]="perfilSelecionado === 'cooperativa'"
+    (click)="selecionarPerfil('cooperativa')">
+
+    <i class="fa-solid fa-recycle"></i>
+    <span>Cooperativa</span>
+  </div>
+
+  <div
+    class="perfil-card"
+    [class.selected]="perfilSelecionado === 'recicladora'"
+    (click)="selecionarPerfil('recicladora')">
+
+    <i class="fa-solid fa-industry"></i>
+    <span>Recicladora</span>
+  </div>
+
+  </div>
+
+    <label>E-mail</label>
+
+    <div class="input-group">
+      <i class="fa-regular fa-envelope"></i>
+
+      <input
+        type="email"
+        placeholder="voce@empresa.com">
+    </div>
+
+    <label>Senha</label>
+
+    <div class="input-group">
+      <i class="fa-solid fa-lock"></i>
+
+      <input
+        type="password"
+        placeholder="••••••••">
+    </div>
+
+    <label>Confirmar Senha</label>
+
+    <div class="input-group">
+      <i class="fa-solid fa-lock"></i>
+
+      <input
+        type="password"
+        placeholder="••••••••">
+    </div>
+
+    <button (click)="criarConta()">
+    Criar conta
+    </button>
+
+  </div>
+
+  <div class="register-link">
+    Já tem uma conta?
+    <a (click)="voltarLogin()">Entrar</a>
+  </div>
+
+</div>

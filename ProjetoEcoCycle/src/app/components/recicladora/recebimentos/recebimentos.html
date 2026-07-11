@@ -1,0 +1,88 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="recicladora"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <div class="pagina-header">
+
+            <h1>Recebimentos</h1>
+
+            <p>
+                Confirme e registre o peso real dos resíduos recebidos.
+            </p>
+
+        </div>
+
+        <!-- Aguardando -->
+
+        <section class="secao">
+
+            <h2>
+
+                <i class="fa-solid fa-cube"></i>
+
+                Aguardando Confirmação (0)
+
+            </h2>
+
+            <div class="card-vazio">
+
+                <i class="fa-solid fa-scale-balanced"></i>
+
+                <h3>Nenhum recebimento pendente</h3>
+
+                <p>
+                    Novos recebimentos aparecerão aqui automaticamente.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- Processados -->
+
+        <section class="secao">
+
+            <h2>
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Processados (0)
+
+            </h2>
+
+            <div class="tabela">
+
+                <div class="cabecalho">
+
+                    <span>Cooperativa</span>
+
+                    <span>Tipo</span>
+
+                    <span>Estimado</span>
+
+                    <span>Real</span>
+
+                    <span>Status</span>
+
+                </div>
+
+                <div class="linha-vazia">
+
+                    Nenhum processamento registrado
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

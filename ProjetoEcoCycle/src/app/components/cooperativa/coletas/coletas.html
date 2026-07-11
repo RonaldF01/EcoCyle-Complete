@@ -1,0 +1,54 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="cooperativa"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <div class="pagina-header">
+
+            <h1>Coletas</h1>
+
+            <p>Gerencie o fluxo de coletas atribuídas</p>
+
+        </div>
+
+        <section class="lista-coletas">
+
+            <div class="coleta-card">
+
+                <div class="info">
+
+                    <div class="icone">
+
+                        <i class="fa-solid fa-recycle"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>GeradorTest</h3>
+
+                        <span>papel • 12 kg</span>
+
+                    </div>
+
+                </div>
+
+                <div class="status entregue">
+
+                    Entregue
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

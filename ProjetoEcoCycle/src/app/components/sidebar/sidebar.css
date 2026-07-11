@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+.sidebar{
+
+    width:260px;
+    height:100vh;
+
+    background:#0b0f0c;
+
+    display:flex;
+    flex-direction:column;
+
+    position:fixed;
+    left:0;
+    top:0;
+
+    color:#fff;
+
+    border-right:1px solid #202320;
+
+    transition: width .35s ease;
+    overflow:hidden;
+}
+
+/* ===================== TOPO ===================== */
+
+.sidebar-top{
+
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 20px;
+
+    border-bottom:1px solid #202320;
+}
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.logo i{
+
+    font-size:22px;
+    color:#1f8b4c;
+}
+
+.logo span{
+
+    font-size:18px;
+    font-weight:700;
+}
+
+.toggle{
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:18px;
+
+    transition:.25s;
+}
+
+.toggle:hover{
+
+    color:#1f8b4c;
+}
+
+/* ===================== PERFIL ===================== */
+
+.profile{
+
+    margin:18px;
+
+    padding:12px 14px;
+
+    border:1px solid #173324;
+
+    border-radius:14px;
+
+    background:#0f1b15;
+}
+
+.profile small{
+
+    display:block;
+
+    color:#6ca887;
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    margin-bottom:4px;
+}
+
+.profile h3{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    color:#1f8b4c;
+}
+
+/* ===================== MENU ===================== */
+
+.menu{
+
+    flex:1;
+
+    padding:10px;
+}
+
+.menu a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:#ffffff;
+
+    text-decoration:none;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    margin-bottom:8px;
+
+    transition:.25s;
+
+    font-weight:500;
+}
+
+.menu a i{
+
+    width:20px;
+
+    font-size:19px;
+
+    text-align:center;
+}
+
+.menu a:hover{
+
+    background:#16261c;
+}
+
+.menu a.active{
+
+    background:#1f8b4c;
+
+    color:white;
+
+    font-weight:600;
+}
+
+.menu a.active i{
+
+    color:white;
+}
+
+/* ===================== RODAPÉ ===================== */
+
+.sidebar-footer{
+
+    border-top:1px solid #202320;
+
+    padding:15px 10px;
+}
+
+.sidebar-footer a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:#d8d8d8;
+
+    text-decoration:none;
+
+    padding:14px 16px;
+
+    border-radius:14px;
+
+    transition:.25s;
+}
+
+.sidebar-footer a:hover{
+
+    background:#16261c;
+
+    color:white;
+}
+
+.sidebar-footer i{
+
+    width:20px;
+
+    text-align:center;
+}
+
+/* ===================== FECHADA ===================== */
+
+.sidebar.closed{
+
+    width:80px;
+}
+
+.sidebar.closed .logo span,
+.sidebar.closed .profile,
+.sidebar.closed .menu span,
+.sidebar.closed .sidebar-footer span{
+
+    display:none;
+}
+
+.sidebar.closed .menu a,
+.sidebar.closed .sidebar-footer a{
+
+    justify-content:center;
+}
+
+.toggle{
+
+    cursor:pointer;
+
+    color:white;
+
+    font-size:14px;
+
+    transition:
+        color .3s ease,
+        transform .35s ease;
+}
+
+.toggle.girar{
+
+    transform:rotate(180deg);
+}

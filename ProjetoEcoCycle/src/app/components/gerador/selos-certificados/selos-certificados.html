@@ -1,0 +1,112 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="gerador"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <!-- Cabeçalho -->
+
+        <div class="pagina-header">
+
+            <div>
+
+                <h1>Selos & Certificados</h1>
+
+                <p>
+                    Certificados de rastreabilidade para acesso a crédito verde
+                </p>
+
+            </div>
+
+            <button class="btn-certificado">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Emitir Certificado
+
+            </button>
+
+        </div>
+
+        <!-- Card explicativo -->
+
+        <div class="card-explicacao">
+
+            <h2>
+
+                <i class="fa-solid fa-coins"></i>
+
+                Como os certificados geram economia
+
+            </h2>
+
+            <div class="passos">
+
+                <div class="passo">
+
+                    <div class="icone">📋</div>
+
+                    <h3>1. Emita o Certificado</h3>
+
+                    <p>
+                        Dados de rastreabilidade completos e auditáveis
+                    </p>
+
+                </div>
+
+                <div class="passo">
+
+                    <div class="icone">🏦</div>
+
+                    <h3>2. Apresente ao Banco</h3>
+
+                    <p>
+                        Acesse Green Loans com juros até 30% menores
+                    </p>
+
+                </div>
+
+                <div class="passo">
+
+                    <div class="icone">💰</div>
+
+                    <h3>3. Economize</h3>
+
+                    <p>
+                        Incentivos fiscais + juros menores = software que se paga
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Card vazio -->
+
+        <div class="card-vazio">
+
+            <i class="fa-regular fa-award"></i>
+
+            <h2>Nenhum certificado emitido</h2>
+
+            <p>
+
+                Clique em
+
+                <strong>"Emitir Certificado"</strong>
+
+                para começar.
+
+            </p>
+
+        </div>
+
+    </main>
+
+</div>

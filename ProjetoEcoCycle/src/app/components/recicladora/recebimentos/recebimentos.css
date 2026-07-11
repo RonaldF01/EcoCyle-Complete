@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#f6f8fb;
+}
+
+.layout{
+    position:relative;
+}
+
+.conteudo{
+
+    margin-left:260px;
+    width:calc(100vw - 260px);
+    min-height:100vh;
+
+    padding:28px;
+
+    background:#f6f8fb;
+
+    transition:.35s;
+
+}
+
+.conteudo.menu-fechado{
+
+    margin-left:78px;
+    width:calc(100vw - 78px);
+
+}
+
+.pagina-header{
+
+    margin-bottom:28px;
+
+}
+
+.pagina-header h1{
+
+    font-size:38px;
+    font-weight:700;
+    color:#111827;
+
+}
+
+.pagina-header p{
+
+    margin-top:6px;
+    color:#64748b;
+    font-size:15px;
+
+}
+
+.secao{
+
+    margin-bottom:32px;
+
+}
+
+.secao h2{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:24px;
+    font-weight:700;
+
+    margin-bottom:18px;
+
+    color:#111827;
+
+}
+
+.secao h2 i{
+
+    color:#16a34a;
+
+}
+
+.card-vazio{
+
+    background:white;
+
+    border:1px solid #d9dee7;
+
+    border-radius:18px;
+
+    min-height:150px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.card-vazio i{
+
+    font-size:40px;
+
+    color:#d1d5db;
+
+    margin-bottom:16px;
+
+}
+
+.card-vazio h3{
+
+    font-size:21px;
+
+    color:#111827;
+
+    margin-bottom:8px;
+
+}
+
+.card-vazio p{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+.tabela{
+
+    background:white;
+
+    border:1px solid #d9dee7;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+}
+
+.cabecalho{
+
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    background:#f8fafc;
+
+    padding:16px 24px;
+
+    font-size:13px;
+
+    color:#64748b;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+
+}
+
+.linha-vazia{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    height:90px;
+
+    color:#94a3b8;
+
+    font-size:15px;
+
+}

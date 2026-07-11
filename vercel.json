@@ -1,0 +1,8 @@
+{
+  "installCommand": "cd ProjetoEcoCycle && npm ci",
+  "buildCommand": "cd ProjetoEcoCycle && npm run build",
+  "outputDirectory": "ProjetoEcoCycle/dist/ProjetoEcoCycle/browser",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

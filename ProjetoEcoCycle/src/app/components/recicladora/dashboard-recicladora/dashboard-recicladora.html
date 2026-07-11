@@ -1,0 +1,148 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="recicladora"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <!-- Cabeçalho -->
+
+        <div class="pagina-header">
+
+            <h1>Dashboard</h1>
+
+            <p>Controle de Recebimentos</p>
+
+        </div>
+
+        <!-- Cards -->
+
+        <section class="cards">
+
+            <div class="card green">
+
+                <div class="topo">
+
+                    <div>
+
+                        <span>Total Recebido</span>
+
+                        <h2>0.0 ton</h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-weight-hanging"></i>
+
+                </div>
+
+                <small>+15% vs mês anterior</small>
+
+            </div>
+
+            <div class="card blue">
+
+                <div class="topo">
+
+                    <div>
+
+                        <span>Aguardando Processamento</span>
+
+                        <h2>0</h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+
+                </div>
+
+            </div>
+
+            <div class="card green">
+
+                <div class="topo">
+
+                    <div>
+
+                        <span>Processados</span>
+
+                        <h2>0</h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-recycle"></i>
+
+                </div>
+
+            </div>
+
+            <div class="card green">
+
+                <div class="topo">
+
+                    <div>
+
+                        <span>Cooperativas Parceiras</span>
+
+                        <h2>0</h2>
+
+                    </div>
+
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Recebimentos -->
+
+        <section class="tabela">
+
+            <div class="titulo">
+
+                <h2>Recebimentos Recentes</h2>
+
+            </div>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Cooperativa</th>
+                        <th>Tipo</th>
+                        <th>Peso (kg)</th>
+                        <th>Veículo</th>
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td colspan="5" class="vazio">
+
+                            Nenhum recebimento registrado
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>

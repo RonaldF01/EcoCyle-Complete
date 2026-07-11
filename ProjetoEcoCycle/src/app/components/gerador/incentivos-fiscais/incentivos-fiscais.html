@@ -1,0 +1,351 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="gerador"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <!-- Cabeçalho -->
+
+        <div class="pagina-header">
+
+            <div>
+
+                <h1>Incentivos Fiscais</h1>
+
+                <p>
+                    Financiamentos verdes, créditos fiscais e selos ESG que reduzem seus custos.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Card principal -->
+
+        <div class="card-principal">
+
+            <div class="texto">
+
+                <h2>
+
+                    <i class="fa-solid fa-coins"></i>
+
+                    O Eco Cycle se paga sozinho
+
+                </h2>
+
+                <p>
+
+                    Ao utilizar a plataforma, você obtém Certificados de
+                    Rastreabilidade que qualificam sua empresa para Green Loans
+                    com juros até 30% menores, créditos fiscais municipais e
+                    estaduais, e selos de sustentabilidade que valorizam sua
+                    marca. A economia gerada supera o custo do software.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="cards-resumo">
+
+            <div class="card-resumo green">
+
+                <div class="icone">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <h2>2</h2>
+
+                <span>Green Loan</span>
+
+            </div>
+
+            <div class="card-resumo blue">
+
+                <div class="icone">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <h2>1</h2>
+
+                <span>Crédito Fiscal</span>
+
+            </div>
+
+            <div class="card-resumo purple">
+
+                <div class="icone">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <h2>1</h2>
+
+                <span>Selo ESG</span>
+
+            </div>
+
+            <div class="card-resumo yellow">
+
+                <div class="icone">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+
+                <h2>1</h2>
+
+                <span>Subsídio</span>
+
+            </div>
+
+      </div>
+
+      <div class="lista-incentivos">
+
+    <!-- CARD 1 -->
+
+    <div class="card-incentivo">
+
+        <div class="topo-card">
+
+            <div class="info">
+
+                <div class="icone verde">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <div>
+
+                    <h3>Green Loan BNDES — Financiamento Sustentável</h3>
+
+                    <span>GREEN LOAN • BNDES</span>
+
+                </div>
+
+            </div>
+
+            <div class="badge verde">
+                Até 30%
+            </div>
+
+        </div>
+
+        <p>
+            Linhas de crédito com juros até 30% menores para empresas com certificação de destinação adequada de resíduos. O Certificado de Rastreabilidade do Eco Cycle é aceito como comprovação para acesso ao Fundo Clima e outras linhas verdes do BNDES.
+        </p>
+
+        <div class="requisitos">
+
+            <strong>Requisitos:</strong>
+
+            <span>
+                Certificado de Rastreabilidade válido, CNPJ ativo, compliance PNRS comprovado via Eco Cycle.
+            </span>
+
+        </div>
+
+        <button>
+
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            Saiba mais
+
+        </button>
+
+    </div>
+
+    <!-- CARD 2 -->
+
+    <div class="card-incentivo">
+
+        <div class="topo-card">
+
+            <div class="info">
+
+                <div class="icone azul">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+
+                    <h3>Crédito de ICMS Verde — SP</h3>
+
+                    <span>CRÉDITO FISCAL • GOVERNO DO ESTADO DE SP</span>
+
+                </div>
+
+            </div>
+
+            <div class="badge azul">
+                Até 5%
+            </div>
+
+        </div>
+
+        <p>
+            Programa do Estado de São Paulo que concede créditos de ICMS para empresas que comprovem destinação adequada de resíduos sólidos conforme a PNRS. Pode representar até 5% de redução na carga tributária.
+        </p>
+
+        <div class="requisitos">
+
+            <strong>Requisitos:</strong>
+
+            <span>
+                Manifesto de Transporte de Resíduos (MTR) digital, rastreabilidade completa via plataforma homologada.
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- CARD 3 -->
+
+    <div class="card-incentivo">
+
+        <div class="topo-card">
+
+            <div class="info">
+
+                <div class="icone roxo">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+
+                <div>
+
+                    <h3>Selo ESG — B3 ISE</h3>
+
+                    <span>SELO ESG • B3 — BOLSA DE VALORES</span>
+
+                </div>
+
+            </div>
+
+            <div class="badge roxo">
+                Até 15%
+            </div>
+
+        </div>
+
+        <p>
+            Empresas com selo de sustentabilidade certificado têm acesso ao Índice de Sustentabilidade Empresarial (ISE) da B3, aumentando valor de mercado e atraindo investidores ESG.
+        </p>
+
+        <div class="requisitos">
+
+            <strong>Requisitos:</strong>
+
+            <span>
+                Relatório anual de sustentabilidade, certificações de rastreabilidade e compliance ambiental.
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- CARD 4 -->
+
+    <div class="card-incentivo">
+
+        <div class="topo-card">
+
+            <div class="info">
+
+                <div class="icone amarelo">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+
+                <div>
+
+                    <h3>Subsídio Municipal — Logística Reversa</h3>
+
+                    <span>SUBSÍDIO • PREFEITURAS MUNICIPAIS</span>
+
+                </div>
+
+            </div>
+
+            <div class="badge amarelo">
+                Até 10%
+            </div>
+
+        </div>
+
+        <p>
+            Municípios que aderem ao programa de logística reversa concedem subsídios para empresas que participam ativamente, reduzindo custos operacionais de gestão de resíduos.
+        </p>
+
+        <div class="requisitos">
+
+            <strong>Requisitos:</strong>
+
+            <span>
+                Participação em programa de logística reversa, registro no SINIR, rastreabilidade digital.
+            </span>
+
+        </div>
+
+    </div>
+
+    <!-- CARD 5 -->
+
+    <div class="card-incentivo">
+
+        <div class="topo-card">
+
+            <div class="info">
+
+                <div class="icone verde">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+
+                <div>
+
+                    <h3>Financiamento Verde — Caixa Econômica</h3>
+
+                    <span>GREEN LOAN • CAIXA ECONÔMICA FEDERAL</span>
+
+                </div>
+
+            </div>
+
+            <div class="badge verde">
+                Até 25%
+            </div>
+
+        </div>
+
+        <p>
+            Linhas de crédito empresarial com taxas reduzidas para investimentos em sustentabilidade e economia circular. Aceita certificados de rastreabilidade como garantia complementar.
+        </p>
+
+        <div class="requisitos">
+
+            <strong>Requisitos:</strong>
+
+            <span>
+                Plano de gestão de resíduos aprovado, certificação de rastreabilidade, CNPJ ativo há mais de 2 anos.
+            </span>
+
+        </div>
+
+        <button>
+
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            Saiba mais
+
+        </button>
+
+     </div>
+
+    </div>
+
+    </main>
+
+</div>

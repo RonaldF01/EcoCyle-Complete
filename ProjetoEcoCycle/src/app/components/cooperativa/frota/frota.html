@@ -1,0 +1,76 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="cooperativa"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <div class="pagina-header">
+
+            <div>
+
+                <h1>Gestão de Frota</h1>
+
+                <p>Controle seus veículos e motoristas</p>
+
+            </div>
+
+            <button class="btn-novo">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Novo Veículo
+
+            </button>
+
+        </div>
+
+        <div class="cards">
+
+            <div class="card verde">
+
+                <h2>0</h2>
+
+                <span>Disponíveis</span>
+
+            </div>
+
+            <div class="card azul">
+
+                <h2>0</h2>
+
+                <span>Em Rota</span>
+
+            </div>
+
+            <div class="card laranja">
+
+                <h2>0</h2>
+
+                <span>Manutenção</span>
+
+            </div>
+
+        </div>
+
+        <section class="veiculos">
+
+            <div class="estado-vazio">
+
+                <i class="fa-solid fa-truck"></i>
+
+                <h3>Nenhum veículo cadastrado</h3>
+
+                <p>Clique em "Novo Veículo" para começar</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

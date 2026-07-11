@@ -1,0 +1,80 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="recicladora"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <div class="pagina-header">
+
+            <h1>Controle de Volume</h1>
+
+            <p>
+                Volume de resíduos por caminhão e cooperativa de origem.
+            </p>
+
+        </div>
+
+        <!-- Cards superiores -->
+
+        <div class="cards">
+
+            <section class="card">
+
+                <h2>Volume por Cooperativa</h2>
+
+                <div class="card-vazio">
+
+                    <p>Sem dados</p>
+
+                </div>
+
+            </section>
+
+            <section class="card">
+
+                <h2>Cooperativas Parceiras</h2>
+
+                <div class="card-vazio">
+
+                    <p>Nenhuma cooperativa registrada</p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <!-- Tabela -->
+
+        <section class="tabela-card">
+
+            <h2>Volume por Veículo</h2>
+
+            <div class="cabecalho">
+
+                <span>Placa</span>
+
+                <span>Cooperativa</span>
+
+                <span>Viagens</span>
+
+                <span>Volume Total</span>
+
+            </div>
+
+            <div class="linha-vazia">
+
+                Nenhum veículo registrado
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

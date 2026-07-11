@@ -1,0 +1,231 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+.cadastro-page{
+  min-height: 100vh;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-area{
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo{
+  font-size: 40px;
+  color: #1f8b4c;
+  margin-bottom: 10px;
+}
+
+.logo-area h1{
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.logo-area span{
+  color: #1f8b4c;
+}
+
+.logo-area h2{
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.logo-area p{
+  color: #777;
+}
+
+.login-card{
+  width: 420px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  
+}
+
+.login-card label{
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 12px;
+  margin-bottom: 20px;
+  transition: .3s;
+}
+
+
+.input-group i {
+  color: #9ca3af;
+  margin-right: 12px;
+  transition: .25s ease;
+}
+
+.input-group:focus-within {
+
+  border-color:#166534;
+
+  box-shadow:none;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+select {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0 14px;
+  transition: .25s ease;
+  background: white;
+}
+
+select:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow:
+    0 0 0 3px rgba(34,197,94,.12);
+}
+
+button {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 10px;
+  background: #1f8b4c;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #17703d;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.register-link{
+  margin-top: 20px;
+  color: #0f0f0f;
+}
+
+.register-link a {
+  color: #1f8b4c;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+select:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.12);
+}
+
+input,
+select,
+.input-group {
+  transition: all 0.3s ease;
+}
+
+.perfil-container{
+  display:flex;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.perfil-card{
+  flex: 1;
+  height:80px;
+  
+  border:1px solid #d1d5db;
+
+  border-radius:12px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  background:white;
+
+  cursor:pointer;
+
+  transition:.25s ease;
+}
+
+.perfil-card.selected{
+
+  border-color:#1f8b4c;
+
+  color:#1f8b4c;
+
+  background:#f0fdf4;
+}
+
+.perfil-card i{
+  font-size:22px;
+  color:#6b7280;
+  margin-bottom:8px;
+
+  transition:.25s ease;
+}
+
+.perfil-card span{
+  font-size:14px;
+  font-weight:600;
+}
+
+.perfil-card:hover{
+
+  border-color:#166534;
+
+  background:#f0fdf4;
+}
+
+.perfil-card.selected{
+
+  background:#166534;
+
+  border-color:#166534;
+
+  color:white;
+}
+
+.perfil-card.selected i{
+  color:white;
+}

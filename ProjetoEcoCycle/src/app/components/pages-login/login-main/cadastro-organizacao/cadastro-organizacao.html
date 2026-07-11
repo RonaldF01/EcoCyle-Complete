@@ -1,0 +1,94 @@
+<div class="organizacao-page">
+
+    <div class="logo-area">
+
+      <div class="logo">
+        ♻
+      </div>  
+
+      <h1>
+        Eco<span>Cycle</span>
+      </h1>
+
+      <p>Configure o seu perfil para começar</p>
+
+    </div>
+
+    <div class="login-card">
+        <h2 class="titulo-card">
+            Dados da Organização
+        </h2>
+
+        <label>Nome da Organização</label>
+
+        <div class="input-group">
+            <i class="fa-solid fa-building"></i>
+            <input type="text" placeholder="Ex: Cooperativa Verde SP">  
+        </div>
+
+        <div class="linha-dupla">
+            <div>
+                <label>CNPJ</label>
+                <div class="input-group">
+                    <input type="text" placeholder="00.000.000/0000-00">
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <label>Telefone</label>
+            <div class="input-group">
+                <i class="fa-solid fa-phone"></i>
+                <input type="text" placeholder="(11) 99999-0000">
+            </div>
+        </div>
+
+        <label>Endereço</label>
+
+     <div class="input-group">
+      <i class="fa-solid fa-location-dot"></i>
+      <input
+        type="text"
+        placeholder="Rua, número, bairro">
+    </div>
+
+     <div class="linha-dupla">
+
+      <div>
+        <label>Cidade</label>
+
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="São Paulo">
+        </div>
+      </div>
+
+      <div>
+        <label>Estado</label>
+
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="SP">
+        </div>
+      </div>
+
+      
+    </div>
+    <div>
+    
+      <button (click)="concluirCadastro()">
+        Concluir
+      </button>
+    
+      <div class="voltar-login">
+          <a (click)="voltarLogin()">
+              <i class="fa-solid fa-arrow-left"></i>
+              Voltar ao login
+          </a>
+      </div>
+    
+    </div>
+</div>

@@ -1,0 +1,271 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="gerador"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <div class="dashboard-header">
+
+    <div class="titulo">
+
+        <h1>Central do Gerador</h1>
+
+        <p>{{ nomeUsuario }} — Compliance PNRS</p>
+
+    </div>
+
+        <button
+            class="btn-coleta"
+            (click)="irSolicitarColeta()">
+
+            <i class="fa-solid fa-recycle"></i>
+
+            Solicitar Coleta
+
+        </button>
+        </div>
+
+
+    <div class="card-economia">
+
+    <div class="texto">
+
+        <h2>
+
+            <i class="fa-solid fa-coins"></i>
+
+            Economia Projetada com Incentivos
+
+        </h2>
+
+        <p>
+
+            Com base no seu volume de resíduos,
+            incentivos fiscais e acesso a Green Loans
+            com juros reduzidos.
+
+        </p>
+
+    </div>
+
+    <div class="valor">
+
+       <h1>R$ {{ economia }}</h1>
+
+        <span>economia anual projetada</span>
+
+    </div>
+
+</div>
+
+<div class="cards">
+
+    <div class="card">
+
+        <div class="icone verde">
+            <i class="fa-solid fa-recycle"></i>
+        </div>
+
+        <h4>Resíduos Destinados</h4>
+
+        <h2>{{ residuosDestinados }} ton</h2>
+
+        <span class="tag">
+         +{{ tendencia }}%
+        </span>
+
+        <p>vs mês anterior</p>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icone azul">
+            <i class="fa-solid fa-cloud"></i>
+        </div>
+
+        <h4>CO₂ Evitado</h4>
+
+        <h2>0.0 ton</h2>
+
+        <p>impacto ambiental</p>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icone amarelo">
+            <i class="fa-solid fa-award"></i>
+        </div>
+
+        <h4>Certificados</h4>
+
+        <h2>0</h2>
+
+        <p>emitidos</p>
+
+    </div>
+
+    <div class="card">
+
+        <div class="icone roxo">
+            <i class="fa-solid fa-truck"></i>
+        </div>
+
+        <h4>Coletas</h4>
+
+        <h2>0</h2>
+
+        <p>realizadas</p>
+
+    </div>
+
+</div>
+
+<div class="linha">
+
+    <div class="grafico">
+
+        <h2>Evolução de Resíduos Destinados</h2>
+
+        <div class="chart-container">
+
+            <canvas id="graficoResiduos"></canvas>
+
+        </div>
+
+    </div>
+
+    <div
+    class="incentivos"
+    (click)="irIncentivos()">
+
+    <div class="incentivos-topo">
+    <i class="fa-solid fa-shield-halved"></i>
+
+        <h2>Incentivos</h2>
+
+        <a
+        (click)="irIncentivos()">
+
+             Ver todos
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+    <div class="item-incentivo">
+
+        <i class="fa-regular fa-shield-check"></i>
+
+        <div class="texto">
+
+            <h4>Green Loan BNDES — Financiamento Sustentável</h4>
+
+            <p>
+                Linhas de crédito com juros até 30% menores para empresas
+                com certificação de destinação adequada de resíduos.
+            </p>
+
+            <span>Até 30% de economia</span>
+
+        </div>
+
+    </div>
+
+    <div class="item-incentivo">
+
+        <i class="fa-regular fa-shield-check"></i>
+
+        <div class="texto">
+
+            <h4>Crédito de ICMS Verde — SP</h4>
+
+            <p>
+                Programa do Estado de São Paulo que concede créditos
+                de ICMS para empresas que comprovem destinação adequada
+                de resíduos.
+            </p>
+
+            <span>Até 5% de economia</span>
+
+        </div>
+
+    </div>
+
+    <div class="item-incentivo">
+
+        <i class="fa-regular fa-shield-check"></i>
+
+        <div class="texto">
+
+            <h4>Selo ESG — B3 ISE</h4>
+
+            <p>
+                Empresas com selo de sustentabilidade certificado têm
+                acesso ao Índice de Sustentabilidade Empresarial (ISE)
+                da B3.
+            </p>
+
+            <span>Até 15% de economia</span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="compliance">
+
+    <h2>
+        <i class="fa-solid fa-shield-halved"></i>
+        Status de Compliance — PNRS
+    </h2>
+
+    <div class="status-cards">
+
+        <div class="status-card">
+
+            <span>Destinação Adequada</span>
+
+            <h1>100%</h1>
+
+            <p>Todos os resíduos rastreados</p>
+
+        </div>
+
+        <div class="status-card">
+
+            <span>MTR Emitidos</span>
+
+            <h1>0</h1>
+
+            <p>Conformidade total</p>
+
+        </div>
+
+        <div class="status-card">
+
+            <span>Risco de Multa</span>
+
+            <h1>Zero</h1>
+
+            <p>Você está em dia com a PNRS</p>
+
+        </div>
+
+    </div>
+
+</div>
+    </main>
+
+</div>

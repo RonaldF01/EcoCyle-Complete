@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+.layout{
+    position: relative;
+}
+
+.conteudo{
+
+    margin-left:260px;
+    width:calc(100% - 260px);
+
+    min-height:100vh;
+
+    padding:40px;
+
+    box-sizing:border-box;
+
+    transition:
+        margin-left .35s ease,
+        width .35s ease;
+
+    background:#f6f8fb;
+}
+
+.conteudo.menu-fechado{
+
+    margin-left:78px;
+    width:calc(100% - 78px);
+
+}
+
+
+.pagina-coleta{
+
+    max-width:100%;
+    width: 560px;
+
+}
+
+.pagina-header{
+
+    margin-bottom:30px;
+
+}
+
+.pagina-header h1{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+.pagina-header p{
+
+    color:#6b7280;
+
+    margin-top:8px;
+
+}
+
+.card-formulario{
+
+    background:#fff;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:20px;
+
+    padding:30px;
+
+}
+
+.campo{
+
+    display:flex;
+
+    flex-direction:column;
+
+    margin-bottom:22px;
+
+}
+
+.campo label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+}
+
+.campo label i{
+
+    color:#16a34a;
+
+}
+
+.campo input,
+.campo select,
+.campo textarea{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    border-radius:12px;
+
+    border:1px solid #d1d5db;
+
+    font-size:15px;
+
+    font-family:inherit;
+
+    transition:.25s;
+
+    background:#fff;
+
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus{
+
+    outline:none;
+
+    border-color:#22c55e;
+
+    box-shadow:0 0 0 4px rgba(34,197,94,.15);
+
+}
+
+.campo textarea{
+
+    resize:none;
+
+}
+
+.linha{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:18px;
+
+}
+
+.btn-enviar{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#22a65b;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:all .3s ease;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    box-shadow:0 6px 18px rgba(34,166,91,.20);
+
+}
+
+.btn-enviar:hover{
+
+    background:#19884a;
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 28px rgba(34,166,91,.35);
+
+}
+
+.btn-enviar:active{
+
+    transform:translateY(0);
+
+    box-shadow:0 4px 10px rgba(34,166,91,.20);
+
+}

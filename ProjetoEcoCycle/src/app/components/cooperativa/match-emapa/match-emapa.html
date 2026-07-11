@@ -1,0 +1,96 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="cooperativa"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <!-- Cabeçalho -->
+
+        <div class="pagina-header">
+
+            <div>
+
+                <h1>Match & Mapa</h1>
+
+                <p>
+                    Encontre coletas disponíveis e trace a rota mais rápida até o gerador.
+                </p>
+
+            </div>
+
+            <button class="btn-atualizar">
+
+                <i class="fa-solid fa-rotate-right"></i>
+
+                Atualizar
+
+            </button>
+
+        </div>
+
+        <!-- Coletas -->
+
+        <section class="card">
+
+            <div class="titulo-card">
+
+                <h2>Coletas Disponíveis</h2>
+
+                <span>0 solicitações</span>
+
+            </div>
+
+            <div class="estado-vazio">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <h3>Nenhuma coleta pendente</h3>
+
+                <p>
+                    Novas solicitações aparecerão aqui em tempo real.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- MAPA -->
+
+        <section class="card">
+
+            <div class="titulo-card">
+
+                <h2>
+
+                    <i class="fa-solid fa-route"></i>
+
+                    Mapa
+
+                </h2>
+
+            </div>
+
+            <div class="mapa-vazio">
+
+                <i class="fa-solid fa-map-location-dot"></i>
+
+                <h3>Mapa indisponível</h3>
+
+                <p>
+
+                    O mapa será exibido automaticamente após aceitar uma coleta.
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>

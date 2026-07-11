@@ -1,0 +1,122 @@
+<div class="login-wrapper">
+
+  <!-- ================= CARROSSEL ================= -->
+
+  <div class="carousel">
+
+
+
+    <div class="logo-carousel">
+
+      <div class="logo-icon">
+        <i class="fa-solid fa-recycle"></i>
+      </div>
+
+      <span>EcoCycle</span>
+
+    </div>
+
+    <div class="perfil-carousel">
+
+      <div class="icone-perfil">
+        <i class="fa-solid" [ngClass]="slides[slideAtual].icone"></i>
+      </div>
+
+      <span>
+        {{ slides[slideAtual].titulo }}
+      </span>
+
+    </div>
+
+    <h2>
+      {{ slides[slideAtual].headline }}
+    </h2>
+
+    <p>
+      {{ slides[slideAtual].descricao }}
+    </p>
+
+    <ul>
+
+      <li *ngFor="let item of slides[slideAtual].itens">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        {{ item }}
+
+      </li>
+
+    </ul>
+
+    <div class="indicadores">
+
+      <span
+        *ngFor="let slide of slides; let i = index"
+        [class.ativo]="i == slideAtual"
+        (click)="irParaSlide(i)">
+      </span>
+
+    </div>
+
+  </div>
+
+  <!-- ================= LOGIN ================= -->
+
+  <div class="login-container">
+
+    <div class="logo-area">
+
+      <div class="logo">
+        ♻
+      </div>
+
+      <h1>
+        Eco<span>Cycle</span>
+      </h1>
+
+      <h2>Bem-vindo de volta</h2>
+
+      <p>Acesse sua conta Eco Cycle</p>
+
+    </div>
+
+    <div class="login-card">
+
+      <label>E-mail</label>
+
+      <div class="input-group">
+
+        <i class="fa-regular fa-envelope"></i>
+
+        <input
+          type="email"
+          placeholder="voce@empresa.com">
+
+      </div>
+
+      <label>Senha</label>
+
+      <div class="input-group">
+
+        <i class="fa-solid fa-lock"></i>
+
+        <input
+          type="password"
+          placeholder="••••••••">
+
+      </div>
+
+      <button (click)="entrar()">
+        Entrar
+      </button>
+
+    </div>
+
+    <div class="register-link">
+      Não tem uma conta?
+      <a (click)="irCadastro()">Criar conta</a>
+    </div>
+
+  </div>
+
+</div>

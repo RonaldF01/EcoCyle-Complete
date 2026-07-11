@@ -1,0 +1,168 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="gerador"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <div class="pagina-coleta">
+
+            <!-- Cabeçalho -->
+
+            <div class="pagina-header">
+
+                <h1>Solicitar Coleta</h1>
+
+                <p>
+                    Preencha os dados para solicitar uma coleta de resíduos.
+                </p>
+
+            </div>
+
+            <!-- Card -->
+
+            <div class="card-formulario">
+
+                <!-- Tipo -->
+
+                <div class="campo">
+
+                    <label>
+                        <i class="fa-solid fa-recycle"></i>
+                        Tipo de Resíduo
+                    </label>
+
+                    <select>
+
+                        <option selected disabled>
+                            Selecione o tipo
+                        </option>
+
+                        <option>Papel / Papelão</option>
+                        <option>Plástico</option>
+                        <option>Metal</option>
+                        <option>Vidro</option>
+                        <option>Eletrônico (REEE)</option>
+                        <option>Óleo</option>
+                        <option>Outros</option>
+
+                    </select>
+
+                </div>
+
+                <!-- Peso -->
+
+                <div class="campo">
+
+                    <label>
+
+                        <i class="fa-solid fa-weight-hanging"></i>
+
+                        Peso Estimado (kg)
+
+                    </label>
+
+                    <input
+                        type="number"
+                        placeholder="Ex: 500">
+
+                </div>
+
+                <!-- Endereço -->
+
+                <div class="campo">
+
+                    <label>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        Endereço de Coleta
+
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Rua, número, bairro...">
+
+                </div>
+
+                <!-- Data e Horário -->
+
+                <div class="linha">
+
+                    <div class="campo">
+
+                        <label>
+
+                            <i class="fa-solid fa-calendar"></i>
+
+                            Data Desejada
+
+                        </label>
+
+                        <input type="date">
+
+                    </div>
+
+                    <div class="campo">
+
+                        <label>
+
+                            <i class="fa-solid fa-clock"></i>
+
+                            Horário Preferido
+
+                        </label>
+
+                        <select>
+
+                            <option selected disabled>
+                                Selecione
+                            </option>
+
+                            <option>Manhã (8h às 12h)</option>
+
+                            <option>Tarde (13h às 17h)</option>
+
+                            <option>Noite (18h às 22h)</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <!-- Observações -->
+
+                <div class="campo">
+
+                    <label>Observações</label>
+
+                    <textarea
+                        rows="5"
+                        placeholder="Informações adicionais sobre o resíduo ou local...">
+                    </textarea>
+
+                </div>
+
+                <!-- Botão -->
+
+                <button class="btn-enviar">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    Solicitar Coleta
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>

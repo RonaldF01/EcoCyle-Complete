@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#f6f8fb;
+}
+
+.layout{
+    position:relative;
+}
+
+.conteudo{
+
+    margin-left:260px;
+    width:calc(100vw - 260px);
+
+    min-height:100vh;
+
+    padding:22px 28px;
+
+    background:#f6f8fb;
+
+    transition:
+        margin-left .35s ease,
+        width .35s ease;
+
+}
+
+.conteudo.menu-fechado{
+
+    margin-left:78px;
+    width:calc(100vw - 78px);
+
+}
+
+/*======================
+HEADER
+======================*/
+
+.pagina-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:26px;
+
+}
+
+.pagina-header h1{
+
+    font-size:34px;
+
+    font-weight:800;
+
+    color:#111827;
+
+}
+
+.pagina-header p{
+
+    margin-top:6px;
+
+    font-size:14px;
+
+    color:#6b7280;
+
+}
+
+.btn-novo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#1f9d55;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    padding:12px 20px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/*======================
+CARDS
+======================*/
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+    margin-bottom:24px;
+
+}
+
+.card{
+
+    border-radius:16px;
+
+    padding:18px;
+
+    text-align:center;
+
+}
+
+.card h2{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    margin-bottom:6px;
+
+}
+
+.card span{
+
+    font-size:15px;
+
+    font-weight:500;
+
+}
+
+.verde{
+
+    background:#edf9f2;
+
+    border:1px solid #b8e7ca;
+
+}
+
+.verde h2,
+.verde span{
+
+    color:#198754;
+
+}
+
+.azul{
+
+    background:#eef5ff;
+
+    border:1px solid #bfd7ff;
+
+}
+
+.azul h2,
+.azul span{
+
+    color:#2563eb;
+
+}
+
+.laranja{
+
+    background:#fff6ec;
+
+    border:1px solid #ffd8a8;
+
+}
+
+.laranja h2,
+.laranja span{
+
+    color:#ea580c;
+
+}
+
+/*======================
+CARD VEICULOS
+======================*/
+
+.veiculos{
+
+    background:white;
+
+    border:1px solid #e5e7eb;
+
+    border-radius:18px;
+
+    min-height:360px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.estado-vazio{
+
+    text-align:center;
+
+}
+
+.estado-vazio i{
+
+    font-size:42px;
+
+    color:#c7c7c7;
+
+    margin-bottom:18px;
+
+}
+
+.estado-vazio h3{
+
+    font-size:24px;
+
+    color:#111827;
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
+}
+
+.estado-vazio p{
+
+    color:#6b7280;
+
+    font-size:15px;
+
+}

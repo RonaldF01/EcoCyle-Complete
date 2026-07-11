@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
+}
+
+body{
+    background:#f6f8fb;
+}
+
+.layout{
+    position:relative;
+}
+
+.conteudo{
+    margin-left:260px;
+    width:calc(100vw - 260px);
+    min-height:100vh;
+    padding:28px 32px;
+    background:#f6f8fb;
+    transition:
+        margin-left .35s ease,
+        width .35s ease;
+}
+
+.conteudo.menu-fechado{
+    margin-left:78px;
+    width:calc(100vw - 78px);
+}
+
+.pagina-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+}
+
+.pagina-header h1{
+    font-size:34px;
+    font-weight:800;
+    color:#111827;
+}
+
+.pagina-header p{
+    margin-top:8px;
+    color:#6b7280;
+    font-size:14px;
+}
+
+.btn-atualizar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    border:none;
+    border-radius:12px;
+    background:#16a34a;
+    color:#fff;
+    cursor:pointer;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:24px;
+    margin-bottom:22px;
+}
+
+.titulo-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.titulo-card h2{
+    font-size:22px;
+    color:#111827;
+}
+
+.titulo-card span{
+    color:#6b7280;
+}
+
+.estado-vazio,
+.mapa-vazio{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 20px;
+}
+
+.estado-vazio i,
+.mapa-vazio i{
+    font-size:56px;
+    color:#16a34a;
+    margin-bottom:20px;
+}
+
+.estado-vazio h3,
+.mapa-vazio h3{
+    font-size:24px;
+    color:#111827;
+    margin-bottom:10px;
+}
+
+.estado-vazio p,
+.mapa-vazio p{
+    color:#6b7280;
+    font-size:15px;
+}

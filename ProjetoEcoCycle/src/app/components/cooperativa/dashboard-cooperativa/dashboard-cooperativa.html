@@ -1,0 +1,184 @@
+<div class="layout">
+
+    <app-sidebar
+        perfil="cooperativa"
+        (menuAlterado)="alterarMenu($event)">
+    </app-sidebar>
+
+    <main
+        class="conteudo"
+        [class.menu-fechado]="!menuAberto">
+
+        <!-- Cabeçalho -->
+
+        <div class="pagina-header">
+
+            <h1>Dashboard</h1>
+
+            <p>
+                Bem-vindo(a), {{ nomeUsuario }}
+            </p>
+
+        </div>
+
+        <!-- Cards superiores -->
+
+        <div class="cards-dashboard">
+
+            <div class="card-status">
+
+                <div class="texto">
+
+                    <span>Coletas Pendentes</span>
+
+                    <h2>1</h2>
+
+                    <small class="positivo">
+                        +12%
+                        <span>vs mês anterior</span>
+                    </small>
+
+                </div>
+
+                <div class="icone-card verde">
+
+                    <i class="fa-regular fa-clock"></i>
+
+                </div>
+
+            </div>
+
+            <div class="card-status">
+
+                <div class="texto">
+
+                    <span>Em Rota</span>
+
+                    <h2>0</h2>
+
+                </div>
+
+                <div class="icone-card azul">
+
+                    <i class="fa-solid fa-truck"></i>
+
+                </div>
+
+            </div>
+
+            <div class="card-status">
+
+                <div class="texto">
+
+                    <span>Concluídas</span>
+
+                    <h2>0</h2>
+
+                    <small class="positivo">
+                        +8%
+                        <span>vs mês anterior</span>
+                    </small>
+
+                </div>
+
+                <div class="icone-card verde">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+            </div>
+
+            <div class="card-status">
+
+                <div class="texto">
+
+                    <span>Peso Total Coletado</span>
+
+                    <h2>12 kg</h2>
+
+                </div>
+
+                <div class="icone-card verde">
+
+                    <i class="fa-solid fa-recycle"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Tabela -->
+
+        <div class="card-tabela">
+
+            <h2>Coletas Recentes</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Gerador</th>
+
+                        <th>Tipo</th>
+
+                        <th>Peso (kg)</th>
+
+                        <th>Data</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>GeradorTest</td>
+
+                        <td>Papel</td>
+
+                        <td>12 kg</td>
+
+                        <td>—</td>
+
+                        <td>
+
+                            <span class="status pendente">
+                                Pendente
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Frota -->
+
+        <div class="card-frota">
+
+            <h2>Frota</h2>
+
+            <div class="vazio">
+
+                <i class="fa-solid fa-truck"></i>
+
+                <p>Nenhum veículo cadastrado</p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>

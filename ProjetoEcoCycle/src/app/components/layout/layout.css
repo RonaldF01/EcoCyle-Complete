@@ -1,0 +1,17 @@
+.layout{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:#F5F5F5;
+
+}
+
+.conteudo{
+
+    flex:1;
+
+    padding:30px;
+
+}
