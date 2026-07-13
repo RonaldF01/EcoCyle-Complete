@@ -2,19 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Sidebar } from '../../../sidebar/sidebar';
 
 import { Usuario } from '../../../../models/usuario';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,Sidebar],
   templateUrl: './perfil.html',
   styleUrl: './perfil.css'
 })
 export class Perfil implements OnInit {
 
   usuario: Usuario | null = null;
+  
+  perfilUsuario: 'gerador' | 'cooperativa' | 'recicladora' = 'gerador';
 
   constructor(private router: Router) {}
 
@@ -56,6 +59,8 @@ export class Perfil implements OnInit {
     this.usuario = {
       ...usuarioEncontrado
     };
+
+    this.perfilUsuario = usuarioEncontrado.perfil;
   }
 
   salvarAlteracoes(): void {
