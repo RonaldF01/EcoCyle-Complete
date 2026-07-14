@@ -1,19 +1,58 @@
-<div class="sidebar" [class.closed]="!menuAberto">
+<!-- BOTÃO HAMBÚRGUER NO CELULAR -->
+
+<button
+  type="button"
+  class="menu-hamburguer"
+  [class.oculto]="menuAberto"
+  aria-label="Abrir menu"
+  (click)="toggleMenu()">
+
+  <i class="fa-solid fa-bars"></i>
+
+</button>
+
+<!-- FUNDO ESCURO QUANDO O MENU ABRIR NO CELULAR -->
+
+<div
+  class="sidebar-overlay"
+  *ngIf="telaMobile && menuAberto"
+  (click)="fecharMenuMobile()">
+</div>
+
+<!-- SIDEBAR -->
+
+<div
+  class="sidebar"
+  [class.closed]="!menuAberto"
+  [class.mobile-aberta]="telaMobile && menuAberto">
 
   <!-- TOPO -->
 
   <div class="sidebar-top">
 
     <div class="logo">
+
       <i class="fa-solid fa-recycle"></i>
+
       <span>EcoCycle</span>
+
     </div>
 
-    <i
-      class="fa-solid fa-chevron-left toggle"
-      [class.girar]="!menuAberto"
+    <button
+      type="button"
+      class="toggle"
+      aria-label="Fechar ou recolher menu"
       (click)="toggleMenu()">
-    </i>
+
+      <i
+        class="fa-solid"
+        [ngClass]="telaMobile
+          ? 'fa-xmark'
+          : 'fa-chevron-left'"
+        [class.girar]="!menuAberto && !telaMobile">
+      </i>
+
+    </button>
 
   </div>
 
@@ -23,7 +62,9 @@
 
     <small>PERFIL</small>
 
-    <h3>{{ perfil | titlecase }}</h3>
+    <h3>
+      {{ perfil | titlecase }}
+    </h3>
 
   </div>
 
@@ -38,36 +79,44 @@
       <a
         routerLink="/gerador/dashboard"
         routerLinkActive="ativo"
-        [routerLinkActiveOptions]="{ exact: true }">
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-chart-line"></i>
+
         <span>Dashboard</span>
 
       </a>
 
       <a
         routerLink="/gerador/solicitar-coleta"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-truck"></i>
+
         <span>Solicitar Coleta</span>
 
       </a>
 
       <a
         routerLink="/gerador/incentivos-fiscais"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-coins"></i>
+
         <span>Incentivos Fiscais</span>
 
       </a>
 
       <a
         routerLink="/gerador/selos-certificados"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-award"></i>
+
         <span>Selos & Certificados</span>
 
       </a>
@@ -81,36 +130,44 @@
       <a
         routerLink="/cooperativa/dashboard"
         routerLinkActive="ativo"
-        [routerLinkActiveOptions]="{ exact: true }">
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-chart-line"></i>
+
         <span>Dashboard</span>
 
       </a>
 
       <a
         routerLink="/cooperativa/match-emapa"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-map-location-dot"></i>
+
         <span>Match & Mapa</span>
 
       </a>
 
       <a
         routerLink="/cooperativa/frota"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-truck-fast"></i>
+
         <span>Frota</span>
 
       </a>
 
       <a
         routerLink="/cooperativa/coletas"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-box"></i>
+
         <span>Coletas</span>
 
       </a>
@@ -124,27 +181,33 @@
       <a
         routerLink="/recicladora/dashboard"
         routerLinkActive="ativo"
-        [routerLinkActiveOptions]="{ exact: true }">
+        [routerLinkActiveOptions]="{ exact: true }"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-chart-line"></i>
+
         <span>Dashboard</span>
 
       </a>
 
       <a
         routerLink="/recicladora/recebimentos"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-warehouse"></i>
+
         <span>Recebimentos</span>
 
       </a>
 
       <a
         routerLink="/recicladora/controle-de-volume"
-        routerLinkActive="ativo">
+        routerLinkActive="ativo"
+        (click)="fecharMenuMobile()">
 
         <i class="fa-solid fa-weight-scale"></i>
+
         <span>Controle de Volume</span>
 
       </a>
@@ -159,23 +222,25 @@
 
     <a
       routerLink="/perfil"
-      routerLinkActive="ativo">
+      routerLinkActive="ativo"
+      (click)="fecharMenuMobile()">
 
       <i class="fa-regular fa-user"></i>
+
       <span>Perfil</span>
 
     </a>
 
-    <a
-      role="button"
-      tabindex="0"
-      (click)="sair()"
-      (keydown.enter)="sair()">
+    <button
+      type="button"
+      class="botao-sair"
+      (click)="sair()">
 
       <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
       <span>Sair</span>
 
-    </a>
+    </button>
 
   </div>
 

@@ -218,9 +218,6 @@ body{
     flex:1;
 }
 
-/* =====================================
-   CARDS
-===================================== */
 
 .cards{
 
@@ -394,9 +391,7 @@ body{
 
 }
 
-/* =====================================
-   LINHA INFERIOR
-===================================== */
+
 
 .linha{
 
@@ -578,9 +573,6 @@ body{
 
 }
 
-/* =====================================
-   COMPLIANCE
-===================================== */
 
 .compliance{
 
@@ -606,9 +598,6 @@ body{
 
 }
 
-/* ===========================
-   COMPLIANCE
-=========================== */
 
 .compliance{
 
@@ -724,4 +713,589 @@ body{
 
     color:#6b7280;
 
+}
+
+/* ==================================================
+   RESPONSIVIDADE GERAL — TABLET
+================================================== */
+
+@media (max-width: 1100px) {
+
+  .conteudo {
+    padding: 24px;
+  }
+
+  .pagina-header {
+    gap: 20px;
+  }
+
+  .pagina-header h1 {
+    font-size: 30px;
+  }
+
+  .cards-grid,
+  .dashboard-grid,
+  .grid-cards,
+  .metricas-grid,
+  .estatisticas-grid,
+  .lista-coletas,
+  .perfil-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .linha,
+  .linha-dupla,
+  .form-grid,
+  .grid-formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .grafico-container,
+  .mapa-container,
+  .tabela-container,
+  .table-wrapper {
+    width: 100%;
+  }
+}
+
+/* ==================================================
+   RESPONSIVIDADE GERAL — CELULAR
+================================================== */
+
+@media (max-width: 768px) {
+
+  /*
+    A sidebar no celular fica sobreposta.
+    Por isso o conteúdo não deve manter margem lateral.
+  */
+
+  .conteudo,
+  .conteudo.menu-fechado {
+    width: 100%;
+    min-height: 100vh;
+    margin-left: 0;
+    padding: 78px 16px 24px;
+  }
+
+  /*
+    CABEÇALHO
+  */
+
+  .pagina-header {
+    width: 100%;
+    margin-bottom: 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .pagina-header > div {
+    width: 100%;
+  }
+
+  .pagina-header h1 {
+    font-size: 27px;
+    line-height: 1.2;
+  }
+
+  .pagina-header p {
+    margin-top: 7px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .pagina-header button,
+  .pagina-header .btn-atualizar,
+  .pagina-header .btn-principal,
+  .pagina-header .btn-novo,
+  .pagina-header .btn-voltar {
+    width: 100%;
+  }
+
+  /*
+    GRIDS
+  */
+
+  .cards-grid,
+  .dashboard-grid,
+  .grid-cards,
+  .metricas-grid,
+  .estatisticas-grid,
+  .lista-coletas,
+  .perfil-grid,
+  .coluna-lateral {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .linha,
+  .linha-dupla,
+  .form-grid,
+  .grid-formulario {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /*
+    CARDS
+  */
+
+  .card,
+  .card-formulario,
+  .dashboard-card,
+  .card-metrica,
+  .card-coleta,
+  .card-resumo,
+  .card-grafico,
+  .card-tabela,
+  .perfil-card-principal {
+    width: 100%;
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  .titulo-card,
+  .card-header,
+  .card-topo,
+  .card-coleta-topo {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+  }
+
+  .titulo-card h2,
+  .card-header h2,
+  .card-topo h2 {
+    font-size: 19px;
+  }
+
+  /*
+    FORMULÁRIOS
+  */
+
+  .campo,
+  .input-group,
+  input,
+  select,
+  textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  input,
+  select {
+    min-height: 46px;
+  }
+
+  textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  .btn-enviar,
+  .btn-salvar,
+  .btn-aceitar,
+  .btn-atualizar,
+  .btn-principal,
+  .btn-secundario,
+  .btn-novo,
+  .btn-voltar,
+  .btn-sair-perfil {
+    width: 100%;
+  }
+
+  /*
+    TABELAS
+  */
+
+  .tabela-container,
+  .table-wrapper,
+  .tabela-responsiva {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 700px;
+  }
+
+  /*
+    GRÁFICOS
+  */
+
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  .grafico-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  /*
+    MAPA
+  */
+
+  .mapa,
+  .mapa-container,
+  .mapa-vazio {
+    width: 100%;
+    min-height: 280px;
+  }
+
+  /*
+    ESTADOS VAZIOS
+  */
+
+  .estado-vazio,
+  .mapa-vazio,
+  .sem-dados {
+    min-height: 250px;
+    padding: 38px 16px;
+  }
+
+  .estado-vazio i,
+  .mapa-vazio i,
+  .sem-dados i {
+    font-size: 42px;
+  }
+
+  .estado-vazio h3,
+  .mapa-vazio h3,
+  .sem-dados h3 {
+    font-size: 20px;
+  }
+
+  /*
+    TEXTOS LONGOS
+  */
+
+p,
+span,
+strong,
+td,
+th {
+  overflow-wrap: anywhere;
+}
+
+h1,
+h2,
+h3 {
+  overflow-wrap: normal;
+  word-break: normal;
+}
+}
+
+/* ==================================================
+   RESPONSIVIDADE — CELULARES PEQUENOS
+================================================== */
+
+@media (max-width: 480px) {
+
+  .conteudo,
+  .conteudo.menu-fechado {
+    padding: 72px 12px 20px;
+  }
+
+  .pagina-header {
+    margin-bottom: 18px;
+  }
+
+  .pagina-header h1 {
+    font-size: 24px;
+  }
+
+  .pagina-header p {
+    font-size: 12px;
+  }
+
+  .card,
+  .card-formulario,
+  .dashboard-card,
+  .card-metrica,
+  .card-coleta,
+  .card-resumo,
+  .card-grafico,
+  .card-tabela,
+  .perfil-card-principal {
+    padding: 15px;
+    border-radius: 13px;
+  }
+
+  .titulo-card h2,
+  .card-header h2,
+  .card-topo h2 {
+    font-size: 17px;
+  }
+
+  .input-group {
+    min-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+
+  .btn-enviar,
+  .btn-salvar,
+  .btn-aceitar,
+  .btn-atualizar,
+  .btn-principal,
+  .btn-secundario,
+  .btn-novo,
+  .btn-voltar,
+  .btn-sair-perfil {
+    min-height: 46px;
+    font-size: 13px;
+  }
+
+  .estado-vazio,
+  .mapa-vazio,
+  .sem-dados {
+    min-height: 220px;
+    padding: 30px 12px;
+  }
+
+  .estado-vazio h3,
+  .mapa-vazio h3,
+  .sem-dados h3 {
+    font-size: 18px;
+  }
+}
+
+/* ==================================================
+   CORREÇÕES ESPECÍFICAS DO DASHBOARD GERADOR
+   PARA TABLET E CELULAR
+================================================== */
+
+@media (max-width: 768px) {
+
+  /* CABEÇALHO */
+
+  .dashboard-header {
+    width: 100%;
+    margin-bottom: 24px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .titulo {
+    width: 100%;
+  }
+
+  .titulo h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .titulo p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .btn-coleta {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+
+    padding: 13px 18px;
+  }
+
+  /* CARD DE ECONOMIA */
+
+  .card-economia {
+    width: 100%;
+    min-height: auto;
+    margin-bottom: 24px;
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 22px;
+
+    overflow: hidden;
+  }
+
+  .card-economia > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .card-economia h2 {
+    width: 100%;
+
+    align-items: flex-start;
+
+    font-size: 19px;
+    line-height: 1.4;
+  }
+
+  .card-economia h2 i {
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .card-economia p {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 12px;
+
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .valor {
+    width: 100%;
+    min-width: 0;
+
+    text-align: left;
+  }
+
+  .valor h1 {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+
+    color: #14864b;
+    font-size: 32px;
+    line-height: 1.15;
+
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .valor span {
+    display: block;
+    margin-top: 6px;
+
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  /* CARDS DE INDICADORES */
+
+  .cards {
+    width: 100%;
+    margin: 24px 0;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    min-width: 0;
+  }
+
+  .card h2 {
+    font-size: 28px;
+  }
+
+  /* GRÁFICO E INCENTIVOS */
+
+  .linha {
+    width: 100%;
+
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .grafico,
+  .incentivos,
+  .compliance {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .chart-container {
+    height: 260px;
+  }
+
+  /* COMPLIANCE */
+
+  .status-cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .dashboard-header {
+    gap: 14px;
+  }
+
+  .titulo h1 {
+    font-size: 25px;
+  }
+
+  .card-economia {
+    padding: 18px;
+    gap: 18px;
+    border-radius: 15px;
+  }
+
+  .card-economia h2 {
+    font-size: 17px;
+  }
+
+  .card-economia p {
+    font-size: 13px;
+  }
+
+  .valor h1 {
+    font-size: 27px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .card {
+    min-height: auto;
+  }
+
+  .card h2 {
+    font-size: 30px;
+  }
+
+  .grafico,
+  .incentivos,
+  .compliance {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .grafico h2,
+  .incentivos-topo h2,
+  .compliance h2 {
+    font-size: 19px;
+  }
+
+  .chart-container {
+    height: 230px;
+  }
 }

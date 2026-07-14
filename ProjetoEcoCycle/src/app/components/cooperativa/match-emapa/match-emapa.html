@@ -9,16 +9,21 @@
     class="conteudo"
     [class.menu-fechado]="!menuAberto">
 
-    <!-- Cabeçalho -->
+    <!-- CABEÇALHO -->
 
-    <div class="pagina-header">
+    <header class="pagina-header">
 
       <div>
 
-        <h1>Match & Mapa</h1>
+        <span class="pagina-identificacao">
+          Cooperativa
+        </span>
+
+        <h1>Match &amp; Mapa</h1>
 
         <p>
-          Encontre coletas disponíveis e trace a rota mais rápida até o gerador.
+          Encontre coletas disponíveis e trace a melhor rota
+          até o gerador.
         </p>
 
       </div>
@@ -26,172 +31,425 @@
       <button
         type="button"
         class="btn-atualizar"
+        [disabled]="atualizando"
         (click)="carregarColetas()">
 
-        <i class="fa-solid fa-rotate-right"></i>
+        <i
+          class="fa-solid"
+          [ngClass]="atualizando
+            ? 'fa-spinner fa-spin'
+            : 'fa-rotate-right'">
+        </i>
 
-        Atualizar
+        {{
+          atualizando
+            ? 'Atualizando...'
+            : 'Atualizar'
+        }}
 
       </button>
 
-    </div>
+    </header>
 
-    <!-- Coletas -->
+    <!-- ÁREA PRINCIPAL -->
 
-    <section class="card">
+    <div class="match-grid">
 
-      <div class="titulo-card">
+      <!-- COLETAS DISPONÍVEIS -->
 
-        <h2>Coletas Disponíveis</h2>
+      <section class="card card-disponiveis">
 
-        <span>
-          {{ coletasDisponiveis.length }}
-          solicitação(ões)
-        </span>
+        <div class="titulo-card">
 
-      </div>
+          <div>
 
-      <!-- Estado vazio -->
+            <h2>
+              <i class="fa-solid fa-location-dot"></i>
+              Coletas Disponíveis
+            </h2>
 
-      <div
-        class="estado-vazio"
-        *ngIf="coletasDisponiveis.length === 0">
+            <p>
+              Solicitações pendentes de todos os geradores.
+            </p>
 
-        <i class="fa-solid fa-location-dot"></i>
+          </div>
 
-        <h3>Nenhuma coleta pendente</h3>
+          <span class="contador">
+            {{ coletasDisponiveis.length }}
+            {{
+              coletasDisponiveis.length === 1
+                ? 'solicitação'
+                : 'solicitações'
+            }}
+          </span>
 
-        <p>
-          Novas solicitações aparecerão aqui após clicar em Atualizar.
-        </p>
+        </div>
 
-      </div>
-
-      <!-- Lista de coletas -->
-
-      <div
-        class="lista-coletas"
-        *ngIf="coletasDisponiveis.length > 0">
+        <!-- ESTADO VAZIO -->
 
         <div
-          class="card-coleta"
-          *ngFor="let coleta of coletasDisponiveis">
+          class="estado-vazio"
+          *ngIf="coletasDisponiveis.length === 0">
 
-          <div class="card-coleta-topo">
+          <div class="icone-vazio">
+            <i class="fa-solid fa-box-open"></i>
+          </div>
 
-            <div>
+          <h3>Nenhuma coleta pendente</h3>
 
-              <span class="status-coleta">
-                Pendente
-              </span>
+          <p>
+            Novas solicitações aparecerão automaticamente aqui.
+          </p>
 
-              <h3>
-                {{ coleta.tipoResiduo }}
-              </h3>
+        </div>
+
+        <!-- LISTA -->
+
+        <div
+          class="lista-coletas"
+          *ngIf="coletasDisponiveis.length > 0">
+
+          <article
+            class="coleta-card"
+            *ngFor="let coleta of coletasDisponiveis"
+            [class.selecionada]="
+              coletaSelecionada?.id === coleta.id
+            "
+            (click)="selecionarColeta(coleta)">
+
+            <div class="coleta-resumo">
+
+              <div class="icone-residuo">
+                <i class="fa-solid fa-recycle"></i>
+              </div>
+
+              <div class="coleta-principal">
+
+                <div class="coleta-titulo">
+
+                  <div>
+
+                    <span class="status pendente">
+                      Pendente
+                    </span>
+
+                    <h3>
+                      {{ coleta.geradorNome }}
+                    </h3>
+
+                  </div>
+
+                  <strong class="peso">
+                    {{ coleta.pesoEstimado }} kg
+                  </strong>
+
+                </div>
+
+                <div class="coleta-informacoes">
+
+                  <span>
+                    <i class="fa-solid fa-location-dot"></i>
+                    {{ coleta.enderecoColeta }}
+                  </span>
+
+                  <span>
+                    <i class="fa-solid fa-recycle"></i>
+                    {{ coleta.tipoResiduo }}
+                  </span>
+
+                  <span>
+                    <i class="fa-regular fa-calendar"></i>
+                    {{ formatarData(coleta.dataDesejada) }}
+                  </span>
+
+                </div>
+
+              </div>
+
+              <i
+                class="fa-solid seta-card"
+                [ngClass]="
+                  coletaSelecionada?.id === coleta.id
+                    ? 'fa-chevron-up'
+                    : 'fa-chevron-down'
+                ">
+              </i>
 
             </div>
 
+            <!-- DETALHES EXPANDIDOS -->
+
+            <div
+              class="coleta-detalhes"
+              *ngIf="
+                coletaSelecionada?.id === coleta.id
+              "
+              (click)="$event.stopPropagation()">
+
+              <div class="detalhes-grid">
+
+                <div>
+
+                  <span>Gerador</span>
+
+                  <strong>
+                    {{ coleta.geradorNome }}
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>Status</span>
+
+                  <strong>Pendente</strong>
+
+                </div>
+
+                <div>
+
+                  <span>Tipo de resíduo</span>
+
+                  <strong>
+                    {{ coleta.tipoResiduo }}
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>Peso estimado</span>
+
+                  <strong>
+                    {{ coleta.pesoEstimado }} kg
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>Data desejada</span>
+
+                  <strong>
+                    {{ formatarData(coleta.dataDesejada) }}
+                  </strong>
+
+                </div>
+
+                <div>
+
+                  <span>Horário</span>
+
+                  <strong>
+                    {{ coleta.horarioPreferido }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+              <div
+                class="observacao"
+                *ngIf="coleta.observacoes">
+
+                <span>Observações</span>
+
+                <p>
+                  {{ coleta.observacoes }}
+                </p>
+
+              </div>
+
+              <div class="acoes-coleta">
+
+                <button
+                  type="button"
+                  class="btn-aceitar"
+                  (click)="aceitarColeta(coleta, $event)">
+
+                  <i class="fa-solid fa-circle-check"></i>
+
+                  Aceitar Coleta
+
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-ver-mapa"
+                  (click)="verNoMapa(coleta, $event)">
+
+                  <i class="fa-solid fa-route"></i>
+
+                  Ver no mapa e traçar rota
+
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-cancelar"
+                  (click)="cancelarSelecao($event)">
+
+                  Cancelar
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+      <!-- MEUS MATCHES -->
+
+      <aside class="card card-matches">
+
+        <div class="titulo-card matches-titulo">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-handshake"></i>
+              Meus Matches
+            </h2>
+
+            <p>Coletas aceitas pela sua cooperativa.</p>
+
+          </div>
+
+          <span class="contador">
+            {{ meusMatches.length }}
+          </span>
+
+        </div>
+
+        <div class="base-cooperativa">
+
+          <i class="fa-solid fa-truck"></i>
+
+          <div>
+
+            <span>Sua base</span>
+
             <strong>
-              {{ coleta.pesoEstimado }} kg
+              {{ enderecoBaseCooperativa }}
             </strong>
 
           </div>
 
-          <div class="dados-coleta">
+        </div>
 
-            <p>
+        <!-- SEM MATCHES -->
 
-              <i class="fa-solid fa-building"></i>
+        <div
+          class="matches-vazio"
+          *ngIf="meusMatches.length === 0">
 
-              <strong>Gerador:</strong>
+          <i class="fa-regular fa-map"></i>
 
-              {{ coleta.geradorNome }}
+          <h3>Nenhum match ativo</h3>
 
-            </p>
+          <p>
+            Aceite uma coleta disponível para visualizar
+            sua rota neste painel.
+          </p>
 
-            <p>
+        </div>
 
-              <i class="fa-solid fa-location-dot"></i>
+        <!-- LISTA DE MATCHES -->
 
-              <strong>Endereço:</strong>
-
-              {{ coleta.enderecoColeta }}
-
-            </p>
-
-            <p>
-
-              <i class="fa-solid fa-calendar"></i>
-
-              <strong>Data:</strong>
-
-              {{ coleta.dataDesejada | date:'dd/MM/yyyy' }}
-
-            </p>
-
-            <p>
-
-              <i class="fa-solid fa-clock"></i>
-
-              <strong>Horário:</strong>
-
-              {{ coleta.horarioPreferido }}
-
-            </p>
-
-            <p *ngIf="coleta.observacoes">
-
-              <i class="fa-solid fa-comment"></i>
-
-              <strong>Observações:</strong>
-
-              {{ coleta.observacoes }}
-
-            </p>
-
-          </div>
+        <div
+          class="lista-matches"
+          *ngIf="meusMatches.length > 0">
 
           <button
             type="button"
-            class="btn-aceitar"
-            (click)="aceitarColeta(coleta)">
+            class="match-item"
+            *ngFor="let match of meusMatches"
+            [class.ativo]="
+              coletaExibidaNoMapa?.id === match.id
+            "
+            (click)="verNoMapa(match)">
 
-            <i class="fa-solid fa-circle-check"></i>
+            <div class="match-icone">
+              <i class="fa-solid fa-route"></i>
+            </div>
 
-            Aceitar Coleta
+            <div class="match-conteudo">
+
+              <strong>
+                {{ match.geradorNome }}
+              </strong>
+
+              <span>
+                {{ match.tipoResiduo }} •
+                {{ match.pesoEstimado }} kg
+              </span>
+
+              <small>
+                {{ match.enderecoColeta }}
+              </small>
+
+            </div>
+
+            <i class="fa-solid fa-chevron-right"></i>
 
           </button>
 
         </div>
 
-      </div>
+      </aside>
 
-    </section>
+    </div>
 
     <!-- MAPA -->
 
-    <section class="card">
+    <section
+      id="secao-mapa"
+      class="card card-mapa">
 
       <div class="titulo-card">
 
-        <h2>
+        <div>
 
-          <i class="fa-solid fa-route"></i>
+          <h2>
+            <i class="fa-solid fa-map-location-dot"></i>
+            Mapa e Rota
+          </h2>
 
-          Mapa
+          <p>
+            Trajeto entre a base da cooperativa e o gerador.
+          </p>
 
-        </h2>
+        </div>
 
       </div>
 
-      <div class="mapa-vazio">
+      <app-collection-map
+        *ngIf="
+          coletaExibidaNoMapa &&
+          cooperativaAtual
+        "
+        [coleta]="coletaExibidaNoMapa"
+        [cooperativa]="cooperativaAtual">
+      </app-collection-map>
 
-        <i class="fa-solid fa-map-location-dot"></i>
+      <div
+        class="mapa-vazio"
+        *ngIf="!coletaExibidaNoMapa">
 
-        <h3>Mapa indisponível</h3>
+        <div class="icone-vazio">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+
+        <h3>Selecione uma coleta</h3>
 
         <p>
-          O mapa será exibido automaticamente após aceitar uma coleta.
+          Clique em “Ver no mapa” ou em um dos seus matches
+          para calcular e exibir a rota.
         </p>
 
       </div>

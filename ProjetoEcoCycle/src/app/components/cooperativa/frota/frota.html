@@ -1,76 +1,529 @@
 <div class="layout">
 
-    <app-sidebar
-        perfil="cooperativa"
-        (menuAlterado)="alterarMenu($event)">
-    </app-sidebar>
+  <app-sidebar
+    perfil="cooperativa"
+    (menuAlterado)="alterarMenu($event)">
+  </app-sidebar>
 
-    <main
-        class="conteudo"
-        [class.menu-fechado]="!menuAberto">
+  <main
+    class="conteudo"
+    [class.menu-fechado]="!menuAberto">
 
-        <div class="pagina-header">
+    <!-- CABEÇALHO -->
 
-            <div>
+    <header class="pagina-header">
 
-                <h1>Gestão de Frota</h1>
+      <div>
 
-                <p>Controle seus veículos e motoristas</p>
+        <span class="pagina-identificacao">
+          Cooperativa
+        </span>
 
-            </div>
+        <h1>Frota</h1>
 
-            <button class="btn-novo">
+        <p>
+          Cadastre veículos e acompanhe a situação operacional da frota.
+        </p>
 
-                <i class="fa-solid fa-plus"></i>
+      </div>
 
-                Novo Veículo
+      <button
+        type="button"
+        class="btn-novo-veiculo"
+        (click)="abrirModal()">
 
-            </button>
+        <i class="fa-solid fa-plus"></i>
 
-        </div>
+        Novo Veículo
 
-        <div class="cards">
+      </button>
 
-            <div class="card verde">
+    </header>
 
-                <h2>0</h2>
+    <!-- RESUMO -->
 
-                <span>Disponíveis</span>
+    <section class="metricas-grid">
 
-            </div>
+      <article class="card-metrica metrica-disponivel">
 
-            <div class="card azul">
+        <div class="metrica-icone">
 
-                <h2>0</h2>
-
-                <span>Em Rota</span>
-
-            </div>
-
-            <div class="card laranja">
-
-                <h2>0</h2>
-
-                <span>Manutenção</span>
-
-            </div>
+          <i class="fa-solid fa-circle-check"></i>
 
         </div>
 
-        <section class="veiculos">
+        <div>
 
-            <div class="estado-vazio">
+          <span>Disponíveis</span>
 
-                <i class="fa-solid fa-truck"></i>
+          <strong>
+            {{ totalDisponiveis }}
+          </strong>
 
-                <h3>Nenhum veículo cadastrado</h3>
+          <small>
+            Prontos para coleta
+          </small>
 
-                <p>Clique em "Novo Veículo" para começar</p>
+        </div>
+
+      </article>
+
+      <article class="card-metrica metrica-rota">
+
+        <div class="metrica-icone">
+
+          <i class="fa-solid fa-route"></i>
+
+        </div>
+
+        <div>
+
+          <span>Em Rota</span>
+
+          <strong>
+            {{ totalEmRota }}
+          </strong>
+
+          <small>
+            Em coleta ativa
+          </small>
+
+        </div>
+
+      </article>
+
+      <article class="card-metrica metrica-manutencao">
+
+        <div class="metrica-icone">
+
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+
+        </div>
+
+        <div>
+
+          <span>Manutenção</span>
+
+          <strong>
+            {{ totalManutencao }}
+          </strong>
+
+          <small>
+            Fora de operação
+          </small>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <!-- LISTA -->
+
+    <section class="card card-lista">
+
+      <div class="titulo-card">
+
+        <div>
+
+          <h2>
+            <i class="fa-solid fa-truck-fast"></i>
+            Veículos Cadastrados
+          </h2>
+
+          <p>
+            {{ veiculos.length }}
+            {{
+              veiculos.length === 1
+                ? 'veículo cadastrado'
+                : 'veículos cadastrados'
+            }}
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- CARREGAMENTO -->
+
+      <div
+        class="estado-carregamento"
+        *ngIf="carregando">
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        <strong>Carregando frota...</strong>
+
+      </div>
+
+      <!-- ESTADO VAZIO -->
+
+      <div
+        class="estado-vazio"
+        *ngIf="!carregando && veiculos.length === 0">
+
+        <div class="icone-vazio">
+
+          <i class="fa-solid fa-truck"></i>
+
+        </div>
+
+        <h3>Nenhum veículo cadastrado</h3>
+
+        <p>
+          Cadastre o primeiro veículo da sua cooperativa para
+          acompanhar a situação da frota.
+        </p>
+
+        <button
+          type="button"
+          (click)="abrirModal()">
+
+          <i class="fa-solid fa-plus"></i>
+
+          Cadastrar Veículo
+
+        </button>
+
+      </div>
+
+      <!-- VEÍCULOS -->
+
+      <div
+        class="lista-veiculos"
+        *ngIf="!carregando && veiculos.length > 0">
+
+        <article
+          class="veiculo-card"
+          *ngFor="let veiculo of veiculos">
+
+          <div class="veiculo-icone">
+
+            <i class="fa-solid fa-truck"></i>
+
+          </div>
+
+          <div class="veiculo-conteudo">
+
+            <div class="veiculo-topo">
+
+              <div>
+
+                <span
+                  class="status-veiculo"
+                  [ngClass]="classeStatus(veiculo.status)">
+
+                  {{ nomeStatus(veiculo.status) }}
+
+                </span>
+
+                <h3>
+                  {{ veiculo.placa }}
+                </h3>
+
+              </div>
+
+              <div class="campo-status">
+
+                <label
+                  [for]="'status-' + veiculo.id">
+
+                  Alterar status
+
+                </label>
+
+                <select
+                  [id]="'status-' + veiculo.id"
+                  [ngModel]="veiculo.status"
+                  (ngModelChange)="alterarStatus(veiculo, $event)">
+
+                  <option value="disponivel">
+                    Disponível
+                  </option>
+
+                  <option value="em_rota">
+                    Em Rota
+                  </option>
+
+                  <option value="manutencao">
+                    Manutenção
+                  </option>
+
+                </select>
+
+              </div>
 
             </div>
 
-        </section>
+            <div class="veiculo-dados">
 
-    </main>
+              <div>
+
+                <i class="fa-solid fa-truck-front"></i>
+
+                <span>Modelo</span>
+
+                <strong>
+                  {{ veiculo.modelo }}
+                </strong>
+
+              </div>
+
+              <div>
+
+                <i class="fa-solid fa-weight-hanging"></i>
+
+                <span>Capacidade</span>
+
+                <strong>
+                  {{ veiculo.capacidadeKg }} kg
+                </strong>
+
+              </div>
+
+              <div>
+
+                <i class="fa-solid fa-id-card"></i>
+
+                <span>Motorista</span>
+
+                <strong>
+                  {{ veiculo.motorista }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+<!-- MODAL -->
+
+<div
+  class="modal-overlay"
+  *ngIf="modalAberto"
+  (click)="fecharAoClicarFora($event)">
+
+  <div
+    class="modal-veiculo"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="tituloModalVeiculo"
+    (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+
+      <div>
+
+        <div class="modal-icone">
+
+          <i class="fa-solid fa-truck"></i>
+
+        </div>
+
+        <div>
+
+          <h2 id="tituloModalVeiculo">
+            Cadastrar Novo Veículo
+          </h2>
+
+          <p>
+            Informe os dados do veículo da cooperativa.
+          </p>
+
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        class="btn-fechar"
+        aria-label="Fechar"
+        (click)="fecharModal()">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+    </div>
+
+    <form
+      class="formulario-veiculo"
+      #formVeiculo="ngForm"
+      (ngSubmit)="cadastrarVeiculo()">
+
+      <div class="linha-dupla">
+
+        <div class="campo">
+
+          <label for="placa">
+            Placa *
+          </label>
+
+          <div class="input-group">
+
+            <i class="fa-solid fa-car-side"></i>
+
+            <input
+              id="placa"
+              name="placa"
+              type="text"
+              maxlength="8"
+              [(ngModel)]="placa"
+              placeholder="ABC-1234"
+              required>
+
+          </div>
+
+        </div>
+
+        <div class="campo">
+
+          <label for="capacidadeKg">
+            Capacidade em kg *
+          </label>
+
+          <div class="input-group">
+
+            <i class="fa-solid fa-weight-hanging"></i>
+
+            <input
+              id="capacidadeKg"
+              name="capacidadeKg"
+              type="number"
+              min="1"
+              [(ngModel)]="capacidadeKg"
+              placeholder="Ex: 5000"
+              required>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="modelo">
+          Modelo
+        </label>
+
+        <div class="input-group">
+
+          <i class="fa-solid fa-truck-front"></i>
+
+          <input
+            id="modelo"
+            name="modelo"
+            type="text"
+            [(ngModel)]="modelo"
+            placeholder="Ex: VW Delivery 9.170">
+
+        </div>
+
+      </div>
+
+      <div class="campo">
+
+        <label for="motorista">
+          Motorista responsável
+        </label>
+
+        <div class="input-group">
+
+          <i class="fa-solid fa-user"></i>
+
+          <input
+            id="motorista"
+            name="motorista"
+            type="text"
+            [(ngModel)]="motorista"
+            placeholder="Nome do motorista">
+
+        </div>
+
+      </div>
+
+      <div class="status-inicial">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <div>
+
+          <strong>Status inicial: Disponível</strong>
+
+          <span>
+            O veículo ficará pronto para receber coletas.
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="modal-acoes">
+
+        <button
+          type="button"
+          class="btn-cancelar"
+          (click)="fecharModal()">
+
+          Cancelar
+
+        </button>
+
+        <button
+          type="submit"
+          class="btn-salvar"
+          [disabled]="
+            salvando ||
+            formVeiculo.invalid
+          ">
+
+          <i
+            class="fa-solid"
+            [ngClass]="
+              salvando
+                ? 'fa-spinner fa-spin'
+                : 'fa-circle-check'
+            ">
+          </i>
+
+          {{
+            salvando
+              ? 'Cadastrando...'
+              : 'Cadastrar Veículo'
+          }}
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+<!-- TOAST -->
+
+<div
+  class="toast-sucesso"
+  *ngIf="toastVisivel">
+
+  <i class="fa-solid fa-circle-check"></i>
+
+  <span>
+    {{ mensagemToast }}
+  </span>
 
 </div>

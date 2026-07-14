@@ -1,184 +1,515 @@
 <div class="layout">
 
-    <app-sidebar
-        perfil="cooperativa"
-        (menuAlterado)="alterarMenu($event)">
-    </app-sidebar>
+  <app-sidebar
+    perfil="cooperativa"
+    (menuAlterado)="alterarMenu($event)">
+  </app-sidebar>
 
-    <main
-        class="conteudo"
-        [class.menu-fechado]="!menuAberto">
+  <main
+    class="conteudo"
+    [class.menu-fechado]="!menuAberto">
 
-        <!-- Cabeçalho -->
+    <!-- CARREGAMENTO -->
 
-        <div class="pagina-header">
+    <div
+      class="pagina-carregando"
+      *ngIf="carregando">
 
-            <h1>Dashboard</h1>
+      <i class="fa-solid fa-spinner fa-spin"></i>
+
+      <strong>Carregando dashboard...</strong>
+
+    </div>
+
+    <div *ngIf="!carregando">
+
+      <!-- CABEÇALHO -->
+
+      <header class="pagina-header">
+
+        <div>
+
+          <span class="pagina-identificacao">
+            Cooperativa
+          </span>
+
+          <h1>Dashboard</h1>
+
+          <p>
+            Bem-vindo(a),
+            <strong>{{ nomeCooperativa }}</strong>
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          class="btn-ver-coletas"
+          (click)="irParaMatch()">
+
+          <i class="fa-solid fa-location-dot"></i>
+
+          Ver coletas disponíveis
+
+        </button>
+
+      </header>
+
+      <!-- KPIS -->
+
+      <section class="metricas-grid">
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-pendente">
+
+              <i class="fa-regular fa-clock"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Coletas Pendentes
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor">
+            {{ totalPendentes }}
+          </strong>
+
+          <div
+            class="tendencia"
+            [class.negativa]="
+              tendenciaPendentes < 0
+            ">
+
+            <i
+              class="fa-solid"
+              [ngClass]="
+                tendenciaPendentes < 0
+                  ? 'fa-arrow-down'
+                  : 'fa-arrow-up'
+              ">
+            </i>
+
+            <span>
+              {{
+                tendenciaPendentes >= 0
+                  ? '+'
+                  : ''
+              }}{{ tendenciaPendentes }}%
+            </span>
+
+            <small>vs mês anterior</small>
+
+          </div>
+
+        </article>
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-rota">
+
+              <i class="fa-solid fa-truck-fast"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Em Rota
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor">
+            {{ totalEmRota }}
+          </strong>
+
+          <p class="metrica-descricao">
+            Coletas em transporte
+          </p>
+
+        </article>
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-concluida">
+
+              <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Concluídas
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor">
+            {{ totalConcluidas }}
+          </strong>
+
+          <div
+            class="tendencia"
+            [class.negativa]="
+              tendenciaConcluidas < 0
+            ">
+
+            <i
+              class="fa-solid"
+              [ngClass]="
+                tendenciaConcluidas < 0
+                  ? 'fa-arrow-down'
+                  : 'fa-arrow-up'
+              ">
+            </i>
+
+            <span>
+              {{
+                tendenciaConcluidas >= 0
+                  ? '+'
+                  : ''
+              }}{{ tendenciaConcluidas }}%
+            </span>
+
+            <small>vs mês anterior</small>
+
+          </div>
+
+        </article>
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-peso">
+
+              <i class="fa-solid fa-weight-hanging"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Peso Total Coletado
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor peso-total">
+            {{ formatarPeso(pesoTotalColetado) }}
+          </strong>
+
+          <p class="metrica-descricao">
+            Somente coletas concluídas
+          </p>
+
+        </article>
+
+      </section>
+
+      <!-- COLETAS RECENTES -->
+
+      <section class="card card-tabela">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-clock-rotate-left"></i>
+
+              Coletas Recentes
+            </h2>
 
             <p>
-                Bem-vindo(a), {{ nomeUsuario }}
+              As 10 solicitações mais recentes.
             </p>
 
-        </div>
+          </div>
 
-        <!-- Cards superiores -->
+          <button
+            type="button"
+            class="btn-secundario"
+            (click)="irParaMatch()">
 
-        <div class="cards-dashboard">
+            Ver todas
 
-            <div class="card-status">
+            <i class="fa-solid fa-arrow-right"></i>
 
-                <div class="texto">
-
-                    <span>Coletas Pendentes</span>
-
-                    <h2>1</h2>
-
-                    <small class="positivo">
-                        +12%
-                        <span>vs mês anterior</span>
-                    </small>
-
-                </div>
-
-                <div class="icone-card verde">
-
-                    <i class="fa-regular fa-clock"></i>
-
-                </div>
-
-            </div>
-
-            <div class="card-status">
-
-                <div class="texto">
-
-                    <span>Em Rota</span>
-
-                    <h2>0</h2>
-
-                </div>
-
-                <div class="icone-card azul">
-
-                    <i class="fa-solid fa-truck"></i>
-
-                </div>
-
-            </div>
-
-            <div class="card-status">
-
-                <div class="texto">
-
-                    <span>Concluídas</span>
-
-                    <h2>0</h2>
-
-                    <small class="positivo">
-                        +8%
-                        <span>vs mês anterior</span>
-                    </small>
-
-                </div>
-
-                <div class="icone-card verde">
-
-                    <i class="fa-solid fa-circle-check"></i>
-
-                </div>
-
-            </div>
-
-            <div class="card-status">
-
-                <div class="texto">
-
-                    <span>Peso Total Coletado</span>
-
-                    <h2>12 kg</h2>
-
-                </div>
-
-                <div class="icone-card verde">
-
-                    <i class="fa-solid fa-recycle"></i>
-
-                </div>
-
-            </div>
+          </button>
 
         </div>
 
-        <!-- Tabela -->
+        <!-- VAZIO -->
 
-        <div class="card-tabela">
+        <div
+          class="estado-vazio"
+          *ngIf="coletasRecentes.length === 0">
 
-            <h2>Coletas Recentes</h2>
+          <div class="icone-vazio">
 
-            <table>
+            <i class="fa-solid fa-box-open"></i>
 
-                <thead>
+          </div>
 
-                    <tr>
+          <h3>Nenhuma coleta encontrada</h3>
 
-                        <th>Gerador</th>
+          <p>
+            As solicitações feitas pelos geradores
+            aparecerão nesta tabela.
+          </p>
 
-                        <th>Tipo</th>
+          <button
+            type="button"
+            (click)="irParaMatch()">
 
-                        <th>Peso (kg)</th>
+            Ver Match &amp; Mapa
 
-                        <th>Data</th>
-
-                        <th>Status</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td>GeradorTest</td>
-
-                        <td>Papel</td>
-
-                        <td>12 kg</td>
-
-                        <td>—</td>
-
-                        <td>
-
-                            <span class="status pendente">
-                                Pendente
-                            </span>
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
+          </button>
 
         </div>
 
-        <!-- Frota -->
+        <!-- TABELA -->
 
-        <div class="card-frota">
+        <div
+          class="tabela-container"
+          *ngIf="coletasRecentes.length > 0">
 
-            <h2>Frota</h2>
+          <table>
 
-            <div class="vazio">
+            <thead>
 
-                <i class="fa-solid fa-truck"></i>
+              <tr>
+                <th>Gerador</th>
+                <th>Tipo</th>
+                <th>Peso</th>
+                <th>Data da coleta</th>
+                <th>Status</th>
+              </tr>
 
-                <p>Nenhum veículo cadastrado</p>
+            </thead>
+
+            <tbody>
+
+              <tr
+                *ngFor="
+                  let coleta of coletasRecentes
+                ">
+
+                <td>
+
+                  <div class="gerador-tabela">
+
+                    <div class="gerador-icone">
+
+                      <i class="fa-solid fa-building"></i>
+
+                    </div>
+
+                    <strong>
+                      {{ coleta.geradorNome }}
+                    </strong>
+
+                  </div>
+
+                </td>
+
+                <td>
+                  {{ coleta.tipoResiduo }}
+                </td>
+
+                <td>
+                  {{ formatarPeso(
+                    obterPesoColeta(coleta)
+                  ) }}
+                </td>
+
+                <td>
+                  {{ formatarData(
+                    coleta.dataDesejada
+                  ) }}
+                </td>
+
+                <td>
+
+                  <span
+                    class="status-coleta"
+                    [ngClass]="
+                      classeStatusColeta(
+                        coleta.status
+                      )
+                    ">
+
+                    {{
+                      nomeStatusColeta(
+                        coleta.status
+                      )
+                    }}
+
+                  </span>
+
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <!-- FROTA -->
+
+      <section class="card card-frota">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-truck-fast"></i>
+
+              Resumo da Frota
+            </h2>
+
+            <p>
+              Veículos cadastrados nesta cooperativa.
+            </p>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn-secundario"
+            (click)="irParaFrota()">
+
+            Gerenciar frota
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+        </div>
+
+        <!-- VAZIO -->
+
+        <div
+          class="estado-vazio"
+          *ngIf="veiculos.length === 0">
+
+          <div class="icone-vazio">
+
+            <i class="fa-solid fa-truck"></i>
+
+          </div>
+
+          <h3>Nenhum veículo cadastrado</h3>
+
+          <p>
+            Cadastre veículos para acompanhar
+            a disponibilidade da frota.
+          </p>
+
+          <button
+            type="button"
+            (click)="irParaFrota()">
+
+            Cadastrar veículo
+
+          </button>
+
+        </div>
+
+        <!-- VEÍCULOS -->
+
+        <div
+          class="frota-grid"
+          *ngIf="veiculos.length > 0">
+
+          <article
+            class="veiculo-card"
+            *ngFor="let veiculo of veiculos">
+
+            <div class="veiculo-icone">
+
+              <i class="fa-solid fa-truck"></i>
 
             </div>
 
+            <div class="veiculo-conteudo">
+
+              <div class="veiculo-topo">
+
+                <h3>
+                  {{ veiculo.placa }}
+                </h3>
+
+                <span
+                  class="status-veiculo"
+                  [ngClass]="
+                    classeStatusVeiculo(
+                      veiculo.status
+                    )
+                  ">
+
+                  {{
+                    nomeStatusVeiculo(
+                      veiculo.status
+                    )
+                  }}
+
+                </span>
+
+              </div>
+
+              <div class="veiculo-info">
+
+                <p>
+
+                  <i class="fa-solid fa-truck-front"></i>
+
+                  <span>Modelo:</span>
+
+                  <strong>
+                    {{ veiculo.modelo }}
+                  </strong>
+
+                </p>
+
+                <p>
+
+                  <i class="fa-solid fa-user"></i>
+
+                  <span>Motorista:</span>
+
+                  <strong>
+                    {{ veiculo.motorista }}
+                  </strong>
+
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
         </div>
 
-    </main>
+      </section>
+
+    </div>
+
+  </main>
 
 </div>

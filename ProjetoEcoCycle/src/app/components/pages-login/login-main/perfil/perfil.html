@@ -1,202 +1,480 @@
-<div class="perfil-page" *ngIf="usuario">
+<div class="layout">
 
-  <div class="perfil-container">
+  <!-- SIDEBAR -->
 
-    <div class="cabecalho-perfil">
+  <app-sidebar
+    *ngIf="usuario"
+    [perfil]="usuario.perfil"
+    (menuAlterado)="alterarMenu($event)">
+  </app-sidebar>
 
-      <div>
-        <h1>Meu Perfil</h1>
-        <p>Consulte e atualize os dados da sua organização.</p>
-      </div>
+  <!-- CONTEÚDO -->
 
-      <button
-        type="button"
-        class="botao-voltar"
-        (click)="voltarDashboard()"
-      >
-        <i class="fa-solid fa-arrow-left"></i>
-        Voltar
-      </button>
+  <main
+    class="conteudo"
+    [class.menu-fechado]="!menuAberto">
 
-    </div>
+    <!-- CARREGAMENTO -->
 
-    <div class="perfil-card">
+    <div
+      class="estado-carregamento"
+      *ngIf="carregando">
 
-      <h2>Dados da conta</h2>
+      <i class="fa-solid fa-spinner fa-spin"></i>
 
-      <div class="dados-conta">
-
-        <div class="campo-conta">
-
-          <span>Tipo de usuário</span>
-
-          <strong>
-            {{ nomePerfil }}
-          </strong>
-
-        </div>
-
-        <div class="campo-conta">
-
-          <span>E-mail</span>
-
-          <strong>
-            {{ usuario.email }}
-          </strong>
-
-        </div>
-
-      </div>
+      <p>Carregando perfil...</p>
 
     </div>
 
-    <div class="perfil-card">
+    <!-- PERFIL -->
 
-      <h2>Dados da organização</h2>
+    <div
+      class="pagina-perfil"
+      *ngIf="!carregando && usuario">
 
-      <label for="nomeOrganizacao">
-        Nome da organização
-      </label>
+      <!-- CABEÇALHO -->
 
-      <div class="input-group">
-
-        <i class="fa-solid fa-building"></i>
-
-        <input
-          id="nomeOrganizacao"
-          type="text"
-          [(ngModel)]="usuario.nomeOrganizacao"
-          placeholder="Nome da organização"
-        >
-
-      </div>
-
-      <div class="linha-dupla">
+      <header class="pagina-header">
 
         <div>
 
-          <label for="cnpj">
-            CNPJ
-          </label>
+          <span class="pagina-identificacao">
+            Conta e organização
+          </span>
 
-          <div class="input-group">
+          <h1>Meu Perfil</h1>
 
-            <i class="fa-regular fa-file-lines"></i>
-
-            <input
-              id="cnpj"
-              type="text"
-              [(ngModel)]="usuario.cnpj"
-              placeholder="00.000.000/0000-00"
-            >
-
-          </div>
+          <p>
+            Consulte e atualize as informações da sua organização.
+          </p>
 
         </div>
 
-        <div>
+        <button
+          type="button"
+          class="btn-voltar"
+          (click)="voltarDashboard()">
 
-          <label for="telefone">
-            Telefone
-          </label>
+          <i class="fa-solid fa-arrow-left"></i>
 
-          <div class="input-group">
+          Voltar ao dashboard
 
-            <i class="fa-solid fa-phone"></i>
+        </button>
 
-            <input
-              id="telefone"
-              type="text"
-              [(ngModel)]="usuario.telefone"
-              placeholder="(11) 99999-0000"
-            >
+      </header>
 
-          </div>
+      <div class="perfil-grid">
+
+        <!-- COLUNA PRINCIPAL -->
+
+        <div class="coluna-principal">
+
+          <!-- DADOS DA CONTA -->
+
+          <section class="card card-conta">
+
+            <div class="card-header">
+
+              <div class="card-titulo">
+
+                <div class="icone-card">
+                  <i class="fa-regular fa-user"></i>
+                </div>
+
+                <div>
+
+                  <h2>Dados da Conta</h2>
+
+                  <p>
+                    Informações utilizadas para acessar a plataforma.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="dados-conta-grid">
+
+              <div class="informacao-conta">
+
+                <span class="rotulo">
+                  Organização
+                </span>
+
+                <div class="valor">
+
+                  <i class="fa-regular fa-building"></i>
+
+                  <strong>
+                    {{ usuario.nomeOrganizacao }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+              <div class="informacao-conta">
+
+                <span class="rotulo">
+                  E-mail
+                </span>
+
+                <div class="valor">
+
+                  <i class="fa-regular fa-envelope"></i>
+
+                  <strong>
+                    {{ usuario.email }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+              <div class="informacao-conta">
+
+                <span class="rotulo">
+                  Tipo de perfil
+                </span>
+
+                <div class="valor">
+
+                  <i
+                    class="fa-solid"
+                    [ngClass]="iconePerfil">
+                  </i>
+
+                  <strong>
+                    {{ nomePerfil }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+              <div class="informacao-conta">
+
+                <span class="rotulo">
+                  Situação da conta
+                </span>
+
+                <div class="valor">
+
+                  <i class="fa-solid fa-circle-check"></i>
+
+                  <strong class="conta-ativa">
+                    Conta ativa
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+          <!-- DADOS DA ORGANIZAÇÃO -->
+
+          <section class="card">
+
+            <div class="card-header">
+
+              <div class="card-titulo">
+
+                <div class="icone-card">
+                  <i class="fa-solid fa-building"></i>
+                </div>
+
+                <div>
+
+                  <h2>Dados da Organização</h2>
+
+                  <p>
+                    Mantenha os dados institucionais atualizados.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <form
+              class="formulario-perfil"
+              #formPerfil="ngForm"
+              (ngSubmit)="salvarAlteracoes()">
+
+              <!-- NOME -->
+
+              <div class="campo campo-completo">
+
+                <label for="nomeOrganizacao">
+                  Nome da Organização
+                </label>
+
+                <div class="input-group">
+
+                  <i class="fa-regular fa-building"></i>
+
+                  <input
+                    id="nomeOrganizacao"
+                    name="nomeOrganizacao"
+                    type="text"
+                    [(ngModel)]="usuario.nomeOrganizacao"
+                    placeholder="Nome da organização"
+                    required>
+
+                </div>
+
+              </div>
+
+              <div class="linha-dupla">
+
+                <!-- CNPJ -->
+
+                <div class="campo">
+
+                  <label for="cnpj">
+                    CNPJ
+                  </label>
+
+                  <div class="input-group">
+
+                    <i class="fa-regular fa-file-lines"></i>
+
+                    <input
+                      id="cnpj"
+                      name="cnpj"
+                      type="text"
+                      [(ngModel)]="usuario.cnpj"
+                      placeholder="00.000.000/0000-00"
+                      required>
+
+                  </div>
+
+                </div>
+
+                <!-- TELEFONE -->
+
+                <div class="campo">
+
+                  <label for="telefone">
+                    Telefone
+                  </label>
+
+                  <div class="input-group">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <input
+                      id="telefone"
+                      name="telefone"
+                      type="text"
+                      [(ngModel)]="usuario.telefone"
+                      placeholder="(00) 00000-0000"
+                      required>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- ENDEREÇO -->
+
+              <div class="campo campo-completo">
+
+                <label for="endereco">
+                  Endereço
+                </label>
+
+                <div class="input-group">
+
+                  <i class="fa-solid fa-location-dot"></i>
+
+                  <input
+                    id="endereco"
+                    name="endereco"
+                    type="text"
+                    [(ngModel)]="usuario.endereco"
+                    placeholder="Rua, número e bairro"
+                    required>
+
+                </div>
+
+              </div>
+
+              <div class="linha-dupla">
+
+                <!-- CIDADE -->
+
+                <div class="campo">
+
+                  <label for="cidade">
+                    Cidade
+                  </label>
+
+                  <div class="input-group">
+
+                    <i class="fa-solid fa-city"></i>
+
+                    <input
+                      id="cidade"
+                      name="cidade"
+                      type="text"
+                      [(ngModel)]="usuario.cidade"
+                      placeholder="Cidade"
+                      required>
+
+                  </div>
+
+                </div>
+
+                <!-- ESTADO -->
+
+                <div class="campo">
+
+                  <label for="estado">
+                    Estado
+                  </label>
+
+                  <div class="input-group">
+
+                    <i class="fa-solid fa-map"></i>
+
+                    <input
+                      id="estado"
+                      name="estado"
+                      type="text"
+                      maxlength="2"
+                      [(ngModel)]="usuario.estado"
+                      placeholder="BA"
+                      required>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- BOTÃO -->
+
+              <button
+                type="submit"
+                class="btn-salvar"
+                [disabled]="salvando || formPerfil.invalid">
+
+                <i
+                  class="fa-solid"
+                  [ngClass]="salvando
+                    ? 'fa-spinner fa-spin'
+                    : 'fa-circle-check'">
+                </i>
+
+                <span>
+                  {{
+                    salvando
+                      ? 'Salvando...'
+                      : 'Salvar Alterações'
+                  }}
+                </span>
+
+              </button>
+
+            </form>
+
+          </section>
 
         </div>
+
+        <!-- COLUNA LATERAL -->
+
+        <aside class="coluna-lateral">
+
+          <section class="card resumo-perfil">
+
+            <div class="avatar-perfil">
+
+              <i
+                class="fa-solid"
+                [ngClass]="iconePerfil">
+              </i>
+
+            </div>
+
+            <h2>
+              {{ usuario.nomeOrganizacao }}
+            </h2>
+
+            <span class="badge-perfil">
+              {{ nomePerfil }}
+            </span>
+
+            <p>
+              {{ usuario.email }}
+            </p>
+
+            <div class="separador"></div>
+
+            <div class="resumo-localizacao">
+
+              <i class="fa-solid fa-location-dot"></i>
+
+              <div>
+
+                <span>Localização</span>
+
+                <strong>
+                  {{ usuario.cidade }} - {{ usuario.estado }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </section>
+
+          <section class="card card-seguranca">
+
+            <div class="seguranca-icone">
+
+              <i class="fa-solid fa-shield-halved"></i>
+
+            </div>
+
+            <div>
+
+              <h3>Sessão protegida</h3>
+
+              <p>
+                Seus dados são exibidos somente para a conta que
+                está conectada neste navegador.
+              </p>
+
+            </div>
+
+          </section>
+
+          <button
+            type="button"
+            class="btn-sair-perfil"
+            (click)="sair()">
+
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+            Sair da conta
+
+          </button>
+
+        </aside>
 
       </div>
-
-      <label for="endereco">
-        Endereço
-      </label>
-
-      <div class="input-group">
-
-        <i class="fa-solid fa-location-dot"></i>
-
-        <input
-          id="endereco"
-          type="text"
-          [(ngModel)]="usuario.endereco"
-          placeholder="Rua, número e bairro"
-        >
-
-      </div>
-
-      <div class="linha-dupla">
-
-        <div>
-
-          <label for="cidade">
-            Cidade
-          </label>
-
-          <div class="input-group">
-
-            <input
-              id="cidade"
-              type="text"
-              [(ngModel)]="usuario.cidade"
-              placeholder="Cidade"
-            >
-
-          </div>
-
-        </div>
-
-        <div>
-
-          <label for="estado">
-            Estado
-          </label>
-
-          <div class="input-group">
-
-            <input
-              id="estado"
-              type="text"
-              maxlength="2"
-              [(ngModel)]="usuario.estado"
-              placeholder="BA"
-            >
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <button
-        type="button"
-        class="botao-salvar"
-        (click)="salvarAlteracoes()"
-      >
-        <i class="fa-solid fa-floppy-disk"></i>
-        Salvar alterações
-      </button>
 
     </div>
 
-    <button
-      type="button"
-      class="botao-sair"
-      (click)="sair()"
-    >
-      <i class="fa-solid fa-arrow-right-from-bracket"></i>
-      Sair da conta
-    </button>
-
-  </div>
+  </main>
 
 </div>

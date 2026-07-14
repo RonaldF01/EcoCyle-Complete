@@ -1,46 +1,85 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostListener,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule
+  ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css'
 })
-export class Sidebar {
+export class Sidebar implements OnInit {
 
-  @Input() perfil: 'gerador' | 'cooperativa' | 'recicladora' = 'gerador';
+  @Input()
+  perfil: 'gerador' | 'cooperativa' | 'recicladora' = 'gerador';
 
-  @Output() menuAlterado = new EventEmitter<boolean>();
+  @Output()
+  menuAlterado = new EventEmitter<boolean>();
 
   menuAberto = true;
+  telaMobile = false;
 
   constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.verificarTamanhoTela();
+  }
+
+  @HostListener('window:resize')
+  aoRedimensionar(): void {
+    this.verificarTamanhoTela();
+  }
+
+  private verificarTamanhoTela(): void {
+
+    this.telaMobile = window.innerWidth <= 768;
+
+    if (this.telaMobile) {
+      this.menuAberto = false;
+    } else {
+      this.menuAberto = true;
+    }
+
+    this.menuAlterado.emit(this.menuAberto);
+  }
 
   toggleMenu(): void {
 
     this.menuAberto = !this.menuAberto;
-    this.menuAlterado.emit(this.menuAberto);
 
+    this.menuAlterado.emit(this.menuAberto);
+  }
+
+  fecharMenuMobile(): void {
+
+    if (this.telaMobile) {
+      this.menuAberto = false;
+      this.menuAlterado.emit(false);
+    }
   }
 
   sair(): void {
 
-    // Limpa a sessão do usuário
     localStorage.removeItem('usuarioLogado');
     localStorage.removeItem('usuarioAtual');
     localStorage.removeItem('perfilUsuario');
 
-    // Limpa dados temporários de cadastro, caso existam
     localStorage.removeItem('emailCadastroTemporario');
     localStorage.removeItem('senhaCadastroTemporaria');
     localStorage.removeItem('perfilCadastroTemporario');
 
-    // Volta para o login
     this.router.navigate(['/']);
-
   }
-
 }

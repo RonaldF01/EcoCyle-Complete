@@ -1,148 +1,459 @@
 <div class="layout">
 
-    <app-sidebar
-        perfil="recicladora"
-        (menuAlterado)="alterarMenu($event)">
-    </app-sidebar>
+  <app-sidebar
+    perfil="recicladora"
+    (menuAlterado)="alterarMenu($event)">
+  </app-sidebar>
 
-    <main
-        class="conteudo"
-        [class.menu-fechado]="!menuAberto">
+  <main
+    class="conteudo"
+    [class.menu-fechado]="!menuAberto">
 
-        <!-- Cabeçalho -->
+    <!-- CARREGAMENTO -->
 
-        <div class="pagina-header">
+    <div
+      class="pagina-carregando"
+      *ngIf="carregando">
 
-            <h1>Dashboard</h1>
+      <i class="fa-solid fa-spinner fa-spin"></i>
 
-            <p>Controle de Recebimentos</p>
+      <strong>
+        Carregando dashboard...
+      </strong>
+
+    </div>
+
+    <div *ngIf="!carregando">
+
+      <!-- CABEÇALHO -->
+
+      <header class="pagina-header">
+
+        <div>
+
+          <span class="pagina-identificacao">
+            Controle de Recebimentos
+          </span>
+
+          <h1>Dashboard</h1>
+
+          <p>
+            Bem-vindo(a),
+            <strong>
+              {{ nomeRecicladora }}
+            </strong>
+          </p>
 
         </div>
 
-        <!-- Cards -->
+        <button
+          type="button"
+          class="btn-recebimentos"
+          (click)="irParaRecebimentos()">
 
-        <section class="cards">
+          <i class="fa-solid fa-warehouse"></i>
 
-            <div class="card green">
+          Ver recebimentos
 
-                <div class="topo">
+        </button>
 
-                    <div>
+      </header>
 
-                        <span>Total Recebido</span>
+      <!-- KPIS -->
 
-                        <h2>0.0 ton</h2>
+      <section class="metricas-grid">
+
+        <!-- TOTAL RECEBIDO -->
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-total">
+
+              <i class="fa-solid fa-weight-scale"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Total Recebido
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor peso-total">
+            {{ formatarToneladas(
+              pesoTotalRecebidoKg
+            ) }}
+          </strong>
+
+          <div
+            class="tendencia"
+            [class.negativa]="
+              tendenciaTotalRecebido < 0
+            ">
+
+            <i
+              class="fa-solid"
+              [ngClass]="
+                tendenciaTotalRecebido < 0
+                  ? 'fa-arrow-down'
+                  : 'fa-arrow-up'
+              ">
+            </i>
+
+            <span>
+              {{
+                tendenciaTotalRecebido >= 0
+                  ? '+'
+                  : ''
+              }}{{ tendenciaTotalRecebido }}%
+            </span>
+
+            <small>
+              vs mês anterior
+            </small>
+
+          </div>
+
+        </article>
+
+        <!-- AGUARDANDO -->
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-aguardando">
+
+              <i class="fa-regular fa-clock"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Aguardando Processamento
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor">
+            {{ totalAguardandoProcessamento }}
+          </strong>
+
+          <p class="metrica-descricao">
+            Recebimentos entregues
+          </p>
+
+        </article>
+
+        <!-- PROCESSADOS -->
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-processados">
+
+              <i class="fa-solid fa-gears"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Processados
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor">
+            {{ totalProcessados }}
+          </strong>
+
+          <p class="metrica-descricao">
+            Resíduos processados
+          </p>
+
+        </article>
+
+        <!-- PARCEIRAS -->
+
+        <article class="card-metrica">
+
+          <div class="metrica-topo">
+
+            <div
+              class="metrica-icone icone-parceiras">
+
+              <i class="fa-solid fa-handshake"></i>
+
+            </div>
+
+            <span class="metrica-titulo">
+              Cooperativas Parceiras
+            </span>
+
+          </div>
+
+          <strong class="metrica-valor">
+            {{ totalCooperativasParceiras }}
+          </strong>
+
+          <p class="metrica-descricao">
+            Parceiros únicos
+          </p>
+
+        </article>
+
+      </section>
+
+      <!-- GRÁFICO -->
+
+      <section
+        class="card card-grafico"
+        *ngIf="volumesPorResiduo.length > 0">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-chart-column"></i>
+
+              Volume por Tipo de Resíduo
+            </h2>
+
+            <p>
+              Peso total recebido por categoria.
+            </p>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn-secundario"
+            (click)="irParaControleVolume()">
+
+            Controle de volume
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+        </div>
+
+        <div class="grafico-barras">
+
+          <div
+            class="barra-item"
+            *ngFor="
+              let volume of volumesPorResiduo
+            "
+            [attr.title]="
+              volume.tipo +
+              ': ' +
+              formatarPeso(volume.pesoKg)
+            ">
+
+            <div class="barra-area">
+
+              <span
+                class="barra-preenchimento"
+                [style.height.%]="volume.percentual">
+
+                <span class="barra-tooltip">
+                  {{ formatarPeso(
+                    volume.pesoKg
+                  ) }}
+                </span>
+
+              </span>
+
+            </div>
+
+            <strong>
+              {{ volume.tipo }}
+            </strong>
+
+            <small>
+              {{ formatarPeso(
+                volume.pesoKg
+              ) }}
+            </small>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- RECEBIMENTOS RECENTES -->
+
+      <section class="card card-tabela">
+
+        <div class="card-header">
+
+          <div>
+
+            <h2>
+              <i class="fa-solid fa-clock-rotate-left"></i>
+
+              Recebimentos Recentes
+            </h2>
+
+            <p>
+              Os 15 recebimentos mais recentes.
+            </p>
+
+          </div>
+
+          <button
+            type="button"
+            class="btn-secundario"
+            (click)="irParaRecebimentos()">
+
+            Ver todos
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </button>
+
+        </div>
+
+        <!-- ESTADO VAZIO -->
+
+        <div
+          class="estado-vazio"
+          *ngIf="
+            recebimentosRecentes.length === 0
+          ">
+
+          <div class="icone-vazio">
+
+            <i class="fa-solid fa-warehouse"></i>
+
+          </div>
+
+          <h3>Nenhum recebimento encontrado</h3>
+
+          <p>
+            As entregas realizadas pelas cooperativas
+            aparecerão nesta tabela.
+          </p>
+
+          <button
+            type="button"
+            (click)="irParaRecebimentos()">
+
+            Abrir recebimentos
+
+          </button>
+
+        </div>
+
+        <!-- TABELA -->
+
+        <div
+          class="tabela-container"
+          *ngIf="
+            recebimentosRecentes.length > 0
+          ">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Cooperativa</th>
+                <th>Tipo de resíduo</th>
+                <th>Peso</th>
+                <th>Placa</th>
+                <th>Status</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr
+                *ngFor="
+                  let recebimento
+                  of recebimentosRecentes
+                ">
+
+                <td>
+
+                  <div class="cooperativa-tabela">
+
+                    <div class="cooperativa-icone">
+
+                      <i class="fa-solid fa-recycle"></i>
 
                     </div>
 
-                    <i class="fa-solid fa-weight-hanging"></i>
+                    <strong>
+                      {{
+                        recebimento.cooperativaNome ||
+                        'Não informada'
+                      }}
+                    </strong>
 
-                </div>
+                  </div>
 
-                <small>+15% vs mês anterior</small>
+                </td>
 
-            </div>
+                <td>
+                  {{ recebimento.tipoResiduo }}
+                </td>
 
-            <div class="card blue">
+                <td>
+                  {{ formatarPeso(
+                    obterPesoRecebimento(
+                      recebimento
+                    )
+                  ) }}
+                </td>
 
-                <div class="topo">
+                <td>
+                  {{
+                    recebimento.placaVeiculo ||
+                    'Não informada'
+                  }}
+                </td>
 
-                    <div>
+                <td>
 
-                        <span>Aguardando Processamento</span>
+                  <span
+                    class="status-recebimento"
+                    [ngClass]="
+                      classeStatus(
+                        recebimento.status
+                      )
+                    ">
 
-                        <h2>0</h2>
+                    {{
+                      nomeStatus(
+                        recebimento.status
+                      )
+                    }}
 
-                    </div>
+                  </span>
 
-                    <i class="fa-solid fa-truck-ramp-box"></i>
+                </td>
 
-                </div>
+              </tr>
 
-            </div>
+            </tbody>
 
-            <div class="card green">
+          </table>
 
-                <div class="topo">
+        </div>
 
-                    <div>
+      </section>
 
-                        <span>Processados</span>
+    </div>
 
-                        <h2>0</h2>
-
-                    </div>
-
-                    <i class="fa-solid fa-recycle"></i>
-
-                </div>
-
-            </div>
-
-            <div class="card green">
-
-                <div class="topo">
-
-                    <div>
-
-                        <span>Cooperativas Parceiras</span>
-
-                        <h2>0</h2>
-
-                    </div>
-
-                    <i class="fa-solid fa-arrow-trend-up"></i>
-
-                </div>
-
-            </div>
-
-        </section>
-
-        <!-- Recebimentos -->
-
-        <section class="tabela">
-
-            <div class="titulo">
-
-                <h2>Recebimentos Recentes</h2>
-
-            </div>
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>Cooperativa</th>
-                        <th>Tipo</th>
-                        <th>Peso (kg)</th>
-                        <th>Veículo</th>
-                        <th>Status</th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    <tr>
-
-                        <td colspan="5" class="vazio">
-
-                            Nenhum recebimento registrado
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-        </section>
-
-    </main>
+  </main>
 
 </div>

@@ -1,0 +1,1099 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.layout {
+  position: relative;
+  min-height: 100vh;
+  background: #f6f8fb;
+}
+
+/* ==================================================
+   CONTEÚDO
+================================================== */
+
+.conteudo {
+  width: calc(100vw - 260px);
+  min-height: 100vh;
+  margin-left: 260px;
+  padding: 30px 34px;
+
+  background: #f6f8fb;
+
+  transition:
+    margin-left 0.35s ease,
+    width 0.35s ease;
+}
+
+.conteudo.menu-fechado {
+  width: calc(100vw - 80px);
+  margin-left: 80px;
+}
+
+.pagina-perfil {
+  width: 100%;
+  max-width: 1360px;
+}
+
+/* ==================================================
+   CABEÇALHO
+================================================== */
+
+.pagina-header {
+  margin-bottom: 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.pagina-identificacao {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #16a34a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pagina-header h1 {
+  color: #111827;
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.pagina-header p {
+  margin-top: 7px;
+
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.btn-voltar {
+  flex-shrink: 0;
+
+  min-height: 44px;
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: #374151;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-voltar:hover {
+  border-color: #86efac;
+  background: #f0fdf4;
+  color: #15803d;
+  transform: translateY(-1px);
+}
+
+/* ==================================================
+   GRID PRINCIPAL
+================================================== */
+
+.perfil-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: start;
+  gap: 22px;
+}
+
+.coluna-principal,
+.coluna-lateral {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ==================================================
+   CARDS
+================================================== */
+
+.card {
+  padding: 24px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  box-shadow: 0 7px 22px rgba(15, 23, 42, 0.04);
+}
+
+.card-header {
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #eef0f3;
+}
+
+.card-titulo {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.icone-card {
+  flex-shrink: 0;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  background: #ecfdf3;
+
+  color: #16a34a;
+  font-size: 19px;
+}
+
+.card-titulo h2 {
+  color: #111827;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.card-titulo p {
+  margin-top: 4px;
+
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ==================================================
+   DADOS DA CONTA
+================================================== */
+
+.dados-conta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px 26px;
+}
+
+.informacao-conta {
+  min-width: 0;
+}
+
+.informacao-conta .rotulo {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #6b7280;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.informacao-conta .valor {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #111827;
+}
+
+.informacao-conta .valor i {
+  flex-shrink: 0;
+
+  width: 19px;
+
+  color: #16a34a;
+  text-align: center;
+}
+
+.informacao-conta .valor strong {
+  min-width: 0;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  overflow-wrap: anywhere;
+}
+
+.conta-ativa {
+  color: #15803d;
+}
+
+/* ==================================================
+   FORMULÁRIO
+================================================== */
+
+.formulario-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.linha-dupla {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.campo {
+  min-width: 0;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 8px;
+
+  color: #111827;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.input-group {
+  width: 100%;
+  height: 48px;
+  padding: 0 13px;
+
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.input-group:hover {
+  border-color: #aeb5bf;
+}
+
+.input-group:focus-within {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.11);
+}
+
+.input-group i {
+  flex-shrink: 0;
+
+  width: 18px;
+
+  color: #7c8781;
+  font-size: 14px;
+  text-align: center;
+
+  transition: color 0.2s ease;
+}
+
+.input-group:focus-within i {
+  color: #16a34a;
+}
+
+.input-group input {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+
+  border: none;
+  outline: none;
+  background: transparent;
+
+  color: #111827;
+  font-size: 14px;
+}
+
+.input-group input::placeholder {
+  color: #9ca3af;
+}
+
+/* ==================================================
+   BOTÃO SALVAR
+================================================== */
+
+.btn-salvar {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 3px;
+  padding: 0 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  border: none;
+  border-radius: 11px;
+
+  background: #1f8f55;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(31, 143, 85, 0.17);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-salvar:not(:disabled):hover {
+  background: #177443;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(31, 143, 85, 0.23);
+}
+
+.btn-salvar:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.btn-salvar:disabled {
+  background: #cbd5ce;
+  color: #6b756f;
+
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==================================================
+   RESUMO LATERAL
+================================================== */
+
+.resumo-perfil {
+  padding: 28px 22px;
+  text-align: center;
+}
+
+.avatar-perfil {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 22px;
+  background: linear-gradient(145deg, #16a34a, #166534);
+
+  color: #ffffff;
+  font-size: 30px;
+
+  box-shadow: 0 12px 24px rgba(22, 101, 52, 0.2);
+}
+
+.resumo-perfil h2 {
+  color: #111827;
+  font-size: 18px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.badge-perfil {
+  display: inline-flex;
+  margin-top: 10px;
+  padding: 6px 11px;
+
+  border-radius: 999px;
+  background: #ecfdf3;
+
+  color: #15803d;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.resumo-perfil > p {
+  margin-top: 12px;
+
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.separador {
+  height: 1px;
+  margin: 22px 0;
+
+  background: #e5e7eb;
+}
+
+.resumo-localizacao {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  text-align: left;
+}
+
+.resumo-localizacao > i {
+  flex-shrink: 0;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  background: #f0fdf4;
+
+  color: #16a34a;
+}
+
+.resumo-localizacao div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.resumo-localizacao span {
+  color: #6b7280;
+  font-size: 11px;
+}
+
+.resumo-localizacao strong {
+  color: #111827;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+/* ==================================================
+   SEGURANÇA
+================================================== */
+
+.card-seguranca {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+
+.seguranca-icone {
+  flex-shrink: 0;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 11px;
+  background: #eff6ff;
+
+  color: #2563eb;
+  font-size: 18px;
+}
+
+.card-seguranca h3 {
+  color: #111827;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.card-seguranca p {
+  margin-top: 6px;
+
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ==================================================
+   BOTÃO SAIR
+================================================== */
+
+.btn-sair-perfil {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  border: 1px solid #fecaca;
+  border-radius: 11px;
+
+  background: #ffffff;
+  color: #dc2626;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-sair-perfil:hover {
+  border-color: #fca5a5;
+  background: #fef2f2;
+  transform: translateY(-1px);
+}
+
+/* ==================================================
+   CARREGAMENTO
+================================================== */
+
+.estado-carregamento {
+  min-height: calc(100vh - 60px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  color: #6b7280;
+}
+
+.estado-carregamento i {
+  color: #16a34a;
+  font-size: 30px;
+}
+
+.estado-carregamento p {
+  font-size: 14px;
+}
+
+/* ==================================================
+   TABLET
+================================================== */
+
+@media (max-width: 1050px) {
+
+  .perfil-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coluna-lateral {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .btn-sair-perfil {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ==================================================
+   CELULAR
+================================================== */
+
+@media (max-width: 768px) {
+
+  .conteudo,
+  .conteudo.menu-fechado {
+    width: 100%;
+    min-height: 100vh;
+    margin-left: 0;
+    padding: 78px 16px 24px;
+  }
+
+  .pagina-header {
+    margin-bottom: 22px;
+
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .pagina-header h1 {
+    font-size: 27px;
+  }
+
+  .pagina-header p {
+    font-size: 13px;
+  }
+
+  .btn-voltar {
+    width: 100%;
+  }
+
+  .dados-conta-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .linha-dupla {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .coluna-lateral {
+    display: flex;
+  }
+
+  .card {
+    padding: 19px;
+    border-radius: 15px;
+  }
+
+  .card-header {
+    margin-bottom: 20px;
+    padding-bottom: 17px;
+  }
+
+  .card-titulo {
+    align-items: flex-start;
+  }
+
+  .card-titulo h2 {
+    font-size: 17px;
+  }
+
+  .resumo-perfil {
+    padding: 25px 19px;
+  }
+}
+
+/* ==================================================
+   CELULARES PEQUENOS
+================================================== */
+
+@media (max-width: 480px) {
+
+  .conteudo,
+  .conteudo.menu-fechado {
+    padding: 72px 12px 20px;
+  }
+
+  .pagina-header h1 {
+    font-size: 24px;
+  }
+
+  .pagina-identificacao {
+    font-size: 10px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 13px;
+  }
+
+  .icone-card {
+    width: 40px;
+    height: 40px;
+  }
+
+  .input-group {
+    height: 46px;
+  }
+
+  .informacao-conta .valor {
+    align-items: flex-start;
+  }
+
+  .btn-salvar {
+    min-height: 47px;
+  }
+}
+
+/* ==================================================
+   RESPONSIVIDADE GERAL — TABLET
+================================================== */
+
+@media (max-width: 1100px) {
+
+  .conteudo {
+    padding: 24px;
+  }
+
+  .pagina-header {
+    gap: 20px;
+  }
+
+  .pagina-header h1 {
+    font-size: 30px;
+  }
+
+  .cards-grid,
+  .dashboard-grid,
+  .grid-cards,
+  .metricas-grid,
+  .estatisticas-grid,
+  .lista-coletas,
+  .perfil-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .linha,
+  .linha-dupla,
+  .form-grid,
+  .grid-formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .grafico-container,
+  .mapa-container,
+  .tabela-container,
+  .table-wrapper {
+    width: 100%;
+  }
+}
+
+/* ==================================================
+   RESPONSIVIDADE GERAL — CELULAR
+================================================== */
+
+@media (max-width: 768px) {
+
+  /*
+    A sidebar no celular fica sobreposta.
+    Por isso o conteúdo não deve manter margem lateral.
+  */
+
+  .conteudo,
+  .conteudo.menu-fechado {
+    width: 100%;
+    min-height: 100vh;
+    margin-left: 0;
+    padding: 78px 16px 24px;
+  }
+
+  /*
+    CABEÇALHO
+  */
+
+  .pagina-header {
+    width: 100%;
+    margin-bottom: 22px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .pagina-header > div {
+    width: 100%;
+  }
+
+  .pagina-header h1 {
+    font-size: 27px;
+    line-height: 1.2;
+  }
+
+  .pagina-header p {
+    margin-top: 7px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .pagina-header button,
+  .pagina-header .btn-atualizar,
+  .pagina-header .btn-principal,
+  .pagina-header .btn-novo,
+  .pagina-header .btn-voltar {
+    width: 100%;
+  }
+
+  /*
+    GRIDS
+  */
+
+  .cards-grid,
+  .dashboard-grid,
+  .grid-cards,
+  .metricas-grid,
+  .estatisticas-grid,
+  .lista-coletas,
+  .perfil-grid,
+  .coluna-lateral {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .linha,
+  .linha-dupla,
+  .form-grid,
+  .grid-formulario {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /*
+    CARDS
+  */
+
+  .card,
+  .card-formulario,
+  .dashboard-card,
+  .card-metrica,
+  .card-coleta,
+  .card-resumo,
+  .card-grafico,
+  .card-tabela,
+  .perfil-card-principal {
+    width: 100%;
+    padding: 18px;
+    border-radius: 15px;
+  }
+
+  .titulo-card,
+  .card-header,
+  .card-topo,
+  .card-coleta-topo {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+  }
+
+  .titulo-card h2,
+  .card-header h2,
+  .card-topo h2 {
+    font-size: 19px;
+  }
+
+  /*
+    FORMULÁRIOS
+  */
+
+  .campo,
+  .input-group,
+  input,
+  select,
+  textarea {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  input,
+  select {
+    min-height: 46px;
+  }
+
+  textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  .btn-enviar,
+  .btn-salvar,
+  .btn-aceitar,
+  .btn-atualizar,
+  .btn-principal,
+  .btn-secundario,
+  .btn-novo,
+  .btn-voltar,
+  .btn-sair-perfil {
+    width: 100%;
+  }
+
+  /*
+    TABELAS
+  */
+
+  .tabela-container,
+  .table-wrapper,
+  .tabela-responsiva {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table {
+    min-width: 700px;
+  }
+
+  /*
+    GRÁFICOS
+  */
+
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+
+  .grafico-container {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  /*
+    MAPA
+  */
+
+  .mapa,
+  .mapa-container,
+  .mapa-vazio {
+    width: 100%;
+    min-height: 280px;
+  }
+
+  /*
+    ESTADOS VAZIOS
+  */
+
+  .estado-vazio,
+  .mapa-vazio,
+  .sem-dados {
+    min-height: 250px;
+    padding: 38px 16px;
+  }
+
+  .estado-vazio i,
+  .mapa-vazio i,
+  .sem-dados i {
+    font-size: 42px;
+  }
+
+  .estado-vazio h3,
+  .mapa-vazio h3,
+  .sem-dados h3 {
+    font-size: 20px;
+  }
+
+  /*
+    TEXTOS LONGOS
+  */
+
+  h1,
+  h2,
+  h3,
+  p,
+  span,
+  strong,
+  td,
+  th {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* ==================================================
+   RESPONSIVIDADE — CELULARES PEQUENOS
+================================================== */
+
+@media (max-width: 480px) {
+
+  .conteudo,
+  .conteudo.menu-fechado {
+    padding: 72px 12px 20px;
+  }
+
+  .pagina-header {
+    margin-bottom: 18px;
+  }
+
+  .pagina-header h1 {
+    font-size: 24px;
+  }
+
+  .pagina-header p {
+    font-size: 12px;
+  }
+
+  .card,
+  .card-formulario,
+  .dashboard-card,
+  .card-metrica,
+  .card-coleta,
+  .card-resumo,
+  .card-grafico,
+  .card-tabela,
+  .perfil-card-principal {
+    padding: 15px;
+    border-radius: 13px;
+  }
+
+  .titulo-card h2,
+  .card-header h2,
+  .card-topo h2 {
+    font-size: 17px;
+  }
+
+  .input-group {
+    min-height: 45px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  input,
+  select {
+    font-size: 14px;
+  }
+
+  textarea {
+    font-size: 14px;
+  }
+
+  .btn-enviar,
+  .btn-salvar,
+  .btn-aceitar,
+  .btn-atualizar,
+  .btn-principal,
+  .btn-secundario,
+  .btn-novo,
+  .btn-voltar,
+  .btn-sair-perfil {
+    min-height: 46px;
+    font-size: 13px;
+  }
+
+  .estado-vazio,
+  .mapa-vazio,
+  .sem-dados {
+    min-height: 220px;
+    padding: 30px 12px;
+  }
+
+  .estado-vazio h3,
+  .mapa-vazio h3,
+  .sem-dados h3 {
+    font-size: 18px;
+  }
+}

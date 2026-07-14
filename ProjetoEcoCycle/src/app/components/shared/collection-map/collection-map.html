@@ -1,0 +1,143 @@
+<div class="componente-mapa">
+
+  <!-- BARRA DE INFORMAÇÕES -->
+
+  <div
+    class="barra-rota"
+    *ngIf="coleta">
+
+    <div class="informacao-rota">
+
+      <i class="fa-solid fa-route"></i>
+
+      <div>
+        <span>Distância</span>
+
+        <strong>
+          {{
+            distanciaKm !== null
+              ? distanciaKm + ' km'
+              : '—'
+          }}
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="informacao-rota">
+
+      <i class="fa-regular fa-clock"></i>
+
+      <div>
+        <span>Tempo estimado</span>
+
+        <strong>
+          {{
+            duracaoMinutos !== null
+              ? duracaoMinutos + ' min'
+              : '—'
+          }}
+        </strong>
+      </div>
+
+    </div>
+
+    <div class="informacao-rota destino">
+
+      <i class="fa-solid fa-location-dot"></i>
+
+      <div>
+        <span>Destino</span>
+
+        <strong>
+          {{ enderecoDestino || coleta.enderecoColeta }}
+        </strong>
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      class="btn-google-maps"
+      [disabled]="mapaCarregando || distanciaKm === null"
+      (click)="abrirNoGoogleMaps()">
+
+      <i class="fa-solid fa-diamond-turn-right"></i>
+
+      Abrir no Maps
+
+    </button>
+
+  </div>
+
+  <!-- MAPA -->
+
+  <div class="mapa-wrapper">
+
+    <div
+      #mapContainer
+      class="mapa-leaflet">
+    </div>
+
+    <div
+      class="mapa-loading"
+      *ngIf="mapaCarregando">
+
+      <i class="fa-solid fa-spinner fa-spin"></i>
+
+      <strong>Carregando rota...</strong>
+
+      <span>
+        Localizando os endereços e calculando o trajeto.
+      </span>
+
+    </div>
+
+    <div
+      class="mapa-erro"
+      *ngIf="erroMapa && !mapaCarregando">
+
+      <i class="fa-solid fa-location-crosshairs"></i>
+
+      <strong>Não foi possível exibir a rota</strong>
+
+      <span>
+        {{ erroMapa }}
+      </span>
+
+      <button
+        type="button"
+        (click)="carregarRota()">
+
+        <i class="fa-solid fa-rotate-right"></i>
+
+        Tentar novamente
+
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- LEGENDA -->
+
+  <div class="legenda-mapa">
+
+    <div>
+      <span class="legenda-ponto gerador"></span>
+      Gerador — local da coleta
+    </div>
+
+    <div>
+      <span class="legenda-ponto cooperativa"></span>
+      Cooperativa — base de partida
+    </div>
+
+    <div>
+      <span class="legenda-linha"></span>
+      Rota calculada
+    </div>
+
+  </div>
+
+</div>

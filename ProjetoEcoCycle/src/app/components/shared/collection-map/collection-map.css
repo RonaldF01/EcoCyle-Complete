@@ -1,0 +1,298 @@
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.componente-mapa {
+  width: 100%;
+}
+
+/* BARRA SUPERIOR */
+
+.barra-rota {
+  display: grid;
+  grid-template-columns:
+    minmax(120px, auto)
+    minmax(140px, auto)
+    minmax(220px, 1fr)
+    auto;
+
+  gap: 14px;
+  align-items: center;
+
+  margin-bottom: 16px;
+  padding: 15px;
+
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.informacao-rota {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.informacao-rota > i {
+  flex-shrink: 0;
+
+  width: 36px;
+  height: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  background: #ecfdf3;
+
+  color: #16a34a;
+}
+
+.informacao-rota div {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.informacao-rota span {
+  color: #6b7280;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.informacao-rota strong {
+  color: #111827;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.btn-google-maps {
+  min-height: 42px;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #16837a;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.btn-google-maps:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+/* MAPA */
+
+.mapa-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 480px;
+
+  overflow: hidden;
+
+  border: 1px solid #d1d5db;
+  border-radius: 16px;
+}
+
+.mapa-leaflet {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* LOADING E ERRO */
+
+.mapa-loading,
+.mapa-erro {
+  position: absolute;
+  z-index: 500;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  padding: 22px;
+  text-align: center;
+
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(3px);
+}
+
+.mapa-loading > i,
+.mapa-erro > i {
+  color: #16a34a;
+  font-size: 34px;
+}
+
+.mapa-loading strong,
+.mapa-erro strong {
+  color: #111827;
+  font-size: 17px;
+}
+
+.mapa-loading span,
+.mapa-erro span {
+  max-width: 430px;
+
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.mapa-erro button {
+  margin-top: 8px;
+  padding: 10px 16px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #16a34a;
+  color: #ffffff;
+
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* LEGENDA */
+
+.legenda-mapa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  margin-top: 14px;
+  padding: 12px 14px;
+
+  border-radius: 11px;
+  background: #f9fafb;
+
+  color: #4b5563;
+  font-size: 11px;
+}
+
+.legenda-mapa > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.legenda-ponto {
+  width: 11px;
+  height: 11px;
+
+  border-radius: 50%;
+}
+
+.legenda-ponto.gerador {
+  background: #16a34a;
+}
+
+.legenda-ponto.cooperativa {
+  background: #16837a;
+}
+
+.legenda-linha {
+  width: 24px;
+  height: 4px;
+
+  border-radius: 999px;
+  background: #16837a;
+}
+
+/* MARCADORES LEAFLET */
+
+:host ::ng-deep .marcador-personalizado {
+  background: transparent;
+  border: none;
+}
+
+:host ::ng-deep .marcador-mapa {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 4px solid #ffffff;
+  border-radius: 50% 50% 50% 6px;
+
+  color: #ffffff;
+  font-size: 17px;
+
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.25);
+
+  transform: rotate(-45deg);
+}
+
+:host ::ng-deep .marcador-mapa i {
+  transform: rotate(45deg);
+}
+
+:host ::ng-deep .marcador-gerador {
+  background: #16a34a;
+}
+
+:host ::ng-deep .marcador-cooperativa {
+  background: #16837a;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 900px) {
+  .barra-rota {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .informacao-rota.destino {
+    grid-column: 1 / -1;
+  }
+
+  .btn-google-maps {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .barra-rota {
+    grid-template-columns: 1fr;
+  }
+
+  .informacao-rota.destino,
+  .btn-google-maps {
+    grid-column: auto;
+  }
+
+  .mapa-wrapper {
+    height: 390px;
+  }
+
+  .legenda-mapa {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
