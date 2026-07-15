@@ -154,30 +154,29 @@
 
 }
 
-.conteudo{
+.conteudo {
+  width: calc(100% - 260px);
+  max-width: calc(100% - 260px);
+  min-height: 100vh;
 
-    margin-left:260px;
+  margin-left: 260px;
+  padding: 28px 32px;
 
-    width:calc(100vw - 260px);
+  background: #f6f8fb;
 
-    min-height:100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
 
-    padding:28px 32px;;
-
-    transition:
-        margin-left .35s ease,
-        width .35s ease;
-
-    box-sizing:border-box;
-
+  transition:
+    margin-left .35s ease,
+    width .35s ease,
+    max-width .35s ease;
 }
 
-.conteudo.menu-fechado{
-
-    margin-left:78px;
-
-    width:calc(100vw - 78px);
-
+.conteudo.menu-fechado {
+  width: calc(100% - 78px);
+  max-width: calc(100% - 78px);
+  margin-left: 78px;
 }
 
 .sidebar{
@@ -203,7 +202,9 @@
 .layout{
 
     position:relative;
-
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 body{
@@ -211,12 +212,7 @@ body{
     font-family:'Inter',sans-serif;
 }
 
-.conteudo{
-    background:#f6f8fb;
-    width: auto;
 
-    flex:1;
-}
 
 
 .cards{
